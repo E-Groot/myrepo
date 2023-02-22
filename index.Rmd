@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Lets try this"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -10,16 +10,31 @@ output:
 library(flexdashboard)
 ```
 
-Column {data-width=500}
+Column {data-width=600}
 -----------------------------------------------------------------------
 
 ### Oefening voor werkcollege
 
 ```{r}
+library(tidyverse)
+library(spotifyr)
+library(tufte)
+corpus <- get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO")
 
+ggplot(corpus, aes(y = valence, x = as.Date(track.album.release_date))) +
+  geom_point(size = 2, color = "#0072B2") +
+  scale_x_date(date_breaks = "years", date_labels = "%Y", expand = c(0, 0)) +
+  xlim(as.Date("1990-01-01"), as.Date("2023-12-31")) + 
+  scale_y_continuous(expand = c(0, 0), limits = c(0, 1)) +
+  labs(x = "Release Date", y = "valence",
+       title = "Valence of Populair Hip Hop and Rap songs",
+       subtitle = "90s vs 2015-2023") + theme_classic()
 ```
+***
 
-Column {data-width=250}
+some thing to say about this 
+
+Column {data-width=400}
 -----------------------------------------------------------------------
 
 ### Chart B
