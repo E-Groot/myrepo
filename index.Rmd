@@ -44,7 +44,7 @@ Column
 -----------------------------------------------------------------------
 
 ### Looking in to the SpotifyAPI track features. 
-To begin the visualisation of our selected corpus we take a look at the correlation between energy and valence and how the differ from the 90s to the modern day rap music. Valence and energy are both variables that measure from 0.0 to 1.0. Valence referring to the emotional quality the music has: 1 being very uplifting and happy and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example.  
+To begin the visualisation of our selected corpus we take a look at the correlation between energy and valence and how they differ from the 90s to the modern day rap music. Valence and energy are both variables that measure from 0.0 to 1.0. Valence referring to the emotional quality the music has: 1 being very uplifting and happy and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example.  
 
 ```{r, fig.width=8, fig.height=6}
 library(tidyverse)
