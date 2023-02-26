@@ -1,48 +1,84 @@
 ---
-title: "Lets try this"
+title: "Computational Musicology"
+author: Elias Groot
+date: "still in progress"
 output: 
   flexdashboard::flex_dashboard:
-    orientation: columns
-    vertical_layout: fill
+    storyboard: true
+    theme: readable
+    
 ---
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(knitr)
+library(tidyverse)
+library(spotifyr)
+library(dplyr)
+library(ggplot2)
+remotes::install_github('jaburgoyne/compmus')
+library(compmus)
 ```
-
-Column {data-width=600}
+Introduction
+==============================
+Column  
 -----------------------------------------------------------------------
 
-### Oefening voor werkcollege
+### Hiphop now and then
+
+
+```{r}
+
+```
+
+***
+some thing to say about this 
+
+ 
+
+Visualisation    
+================================
+Column 
+-----------------------------------------------------------------------
+
+### Looking in to the SpotifyAPI track features. 
 
 ```{r}
 library(tidyverse)
 library(spotifyr)
-library(tufte)
+library(plotly)
 corpus <- get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO")
 
-ggplot(corpus, aes(y = valence, x = as.Date(track.album.release_date))) +
-  geom_point(size = 2, color = "#0072B2") +
-  scale_x_date(date_breaks = "years", date_labels = "%Y", expand = c(0, 0)) +
-  xlim(as.Date("1990-01-01"), as.Date("2023-12-31")) + 
-  scale_y_continuous(expand = c(0, 0), limits = c(0, 1)) +
-  labs(x = "Release Date", y = "valence",
-       title = "Valence of Populair Hip Hop and Rap songs",
-       subtitle = "90s vs 2015-2023") + theme_classic()
+
+library(plotly)
+
+gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, color = energy, text = paste(track.name))) +
+    geom_point(size = 2) +
+    scale_x_date(date_breaks = "years", date_labels = "%Y", expand = c(0, 0)) +
+    xlim(as.Date("1990-01-01"), as.Date("2023-12-31")) + 
+    scale_y_continuous(expand = c(0, 0), limits = c(0, 1)) +
+    labs(x = "Release Date", y = "Valence",
+         title = "Valence and Energy of Popular Hip Hop and Rap Songs",
+         subtitle = "90s vs 2015-2023", color = "Energy") +
+    scale_color_gradient(low = "blue", high = "red", limits = c(0,1)) +
+    theme(panel.grid = element_blank(),
+          plot.title = element_text(size = 18, face = "bold"),
+          plot.subtitle = element_text(size = 14, face = "italic"),
+          axis.title = element_text(size = 12),
+          axis.text = element_text(size = 10),
+          legend.title = element_text(size = 12),
+          legend.text = element_text(size = 10))
+    
+    
+    ggplotly(gg)
 ```
-***
+*** 
+hover on the points to see the track name, exact release date and the exact valence and energy variables
 
-some thing to say about this 
-
-Column {data-width=400}
+Conclusion
+=============================
+Column
 -----------------------------------------------------------------------
-
-### Chart B
-
-```{r}
-
-```
-
 ### Chart C
 
 ```{r}
