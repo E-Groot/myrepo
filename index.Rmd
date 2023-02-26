@@ -24,7 +24,11 @@ Column
 -----------------------------------------------------------------------
 
 #### Hiphop now and then
+In this course I want to do research on the difference and similarities between 'old school hiphop' from the 90s and the modern day rap and hiphop from around 2015 to 2023. I'm interested in how the dynamics have changed and if modern day rap for example contains more energy and danceability and less speechiness or acousticness compared to old school. Therefore my corpus will contain a merged group of tracks of both these periods of hiphop/rap. I will pick some modern day 'rap hits' and some very well known 'old school rap tracks'. 
 
+The natural groups and comparison points will be these popular tracks from both these time spans and albums. I expect to see an increase in aspects like loudness because of the way music and hip hop beats get produced these days but I am very unsure how other factors like energy, valence and danceability have changed between these two groups. Besides things like this I am interested in how it differs in general or maybe how they have similarities because they both were popular in their own time. 
+
+The strength of my corpus will be that I want to respectively check, with the help of popularity charts and checking the streams of the tracks on Spotify, which tracks were the most popular in these genres in both the 90s and around 2015 to 2023 and use these as a reference point. Hereby I rule out a certain form of subjectivity and my own taste of tracks because I will only focus on tracks that are popular and have a lot of streams. So despite that these two time spans differ a lot; my comparison groups have one thing in common, they both consist of only really popular tracks. 
 
 ```{r}
 
