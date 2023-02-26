@@ -4,9 +4,8 @@ author: Elias Groot
 date: "still in progress"
 output: 
   flexdashboard::flex_dashboard:
-    storyboard: true
     theme: readable
-    
+    vertical_layout: scroll
 ---
 
 ```{r setup, include=FALSE}
@@ -24,15 +23,14 @@ Introduction
 Column  
 -----------------------------------------------------------------------
 
-### Hiphop now and then
+#### Hiphop now and then
 
 
 ```{r}
 
 ```
 
-***
-some thing to say about this 
+
 
  
 
@@ -42,8 +40,9 @@ Column
 -----------------------------------------------------------------------
 
 ### Looking in to the SpotifyAPI track features. 
+To begin the visualisation of our selected corpus we take a look at the correlation between energy and valence and how the differ from the 90s to the modern day rap music. Valence and energy are both variables that measure from 0.0 to 1.0. Valence referring to the emotional quality the music has: 1 being very uplifting and happy and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example.  
 
-```{r}
+```{r, fig.width=8, fig.height=6}
 library(tidyverse)
 library(spotifyr)
 library(plotly)
@@ -58,10 +57,8 @@ gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, col
     xlim(as.Date("1990-01-01"), as.Date("2023-12-31")) + 
     scale_y_continuous(expand = c(0, 0), limits = c(0, 1)) +
     labs(x = "Release Date", y = "Valence",
-         title = "Valence and Energy of Popular Hip Hop and Rap Songs",
-         subtitle = "90s vs 2015-2023", color = "Energy") +
-    scale_color_gradient(low = "blue", high = "red", limits = c(0,1)) +
-    theme(panel.grid = element_blank(),
+         title = "Valence and Energy of Popular Hip Hop and Rap Songs", subtitle = "90s vs 2015-2023", color = "Energy") +
+    scale_color_gradient(low = "blue", high = "red", limits = c(0,1)) +         theme_bw() +theme(panel.grid = element_blank(),
           plot.title = element_text(size = 18, face = "bold"),
           plot.subtitle = element_text(size = 14, face = "italic"),
           axis.title = element_text(size = 12),
@@ -69,11 +66,39 @@ gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, col
           legend.title = element_text(size = 12),
           legend.text = element_text(size = 10))
     
-    
-    ggplotly(gg)
+ggplotly(gg)
 ```
-*** 
-hover on the points to see the track name, exact release date and the exact valence and energy variables
+***
+Hoover on the points in the scatterplot to see the track names, exact release date and exact values for the variables energy and valence
+
+### Chromagram of the outliers 
+We see that there are some outliers here who are remarkable; let us take a look at the song "rockstar" from Post Malone featuring 21Savage. 
+```{r, fig.width=8, fig.height=6}
+library(tidyverse)
+library(spotifyr)
+library(compmus)
+rockstar <-
+  get_tidy_audio_analysis("0e7ipj03S05BNilyu5bRzt") |>
+  select(segments) |>
+  unnest(segments) |>
+  select(start, duration, pitches)
+rockstar |>
+  mutate(pitches = map(pitches, compmus_normalise, "euclidean")) |>
+  compmus_gather_chroma() |> 
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = pitch_class,
+      fill = value
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  theme_minimal() +
+  scale_fill_viridis_c() +
+  ggtitle("Chromagram from the song: rockstar (feat. 21 Savage)")
+```
 
 Conclusion
 =============================
