@@ -6,6 +6,8 @@ output:
   flexdashboard::flex_dashboard:
     theme: readable
     vertical_layout: scroll
+editor_options: 
+  chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
@@ -44,7 +46,7 @@ Column
 -----------------------------------------------------------------------
 
 ### Looking in to the SpotifyAPI track features. 
-To begin the visualisation of our selected corpus we take a look at the correlation between energy and valence and how they differ from the 90s to the modern day rap music. Valence and energy are both variables that measure from 0.0 to 1.0. Valence referring to the emotional quality the music has: 1 being very uplifting and happy and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example.  
+To begin the visualisation of our selected corpus we take a look at the correlation between energy and valence and how they differ from the 90s to the modern day rap music. Valence and energy are both variables that measure from 0.0 to 1.0. Valence referring to the emotional quality the music has: 1 being very uplifting and happy and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example (hoover over the points in the scatterplot to see the track names, exact release date and exact values for the variables energy and valence). 
 
 ```{r, fig.width=8, fig.height=6}
 library(tidyverse)
@@ -52,6 +54,11 @@ library(spotifyr)
 library(plotly)
 corpus <- get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO")
 
+corpus <- corpus %>%
+  mutate(new_year = case_when(
+    track.album.release_date < 2000 ~ "Early",
+    track.album.release_date >= 2000 ~ "Late"
+  ))
 
 library(plotly)
 
@@ -68,17 +75,17 @@ gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, col
           axis.title = element_text(size = 12),
           axis.text = element_text(size = 10),
           legend.title = element_text(size = 12),
-          legend.text = element_text(size = 10)) 
+          legend.text = element_text(size = 10)) +
+  facet_wrap(~new_year, scales = "free") 
     
 ggplotly(gg, height=400, width=1000)
 ```
-***
-
-Hoover on the points in the scatterplot to see the track names, exact release date and exact values for the variables energy and valence
 
 ### Chromagram of the outliers 
+
 We see that there are some outliers here who are remarkable; let us take a look at the song "rockstar" from Post Malone featuring 21Savage. 
-```{r, fig.width=8, fig.height=6}
+
+```{r, fig.height = 5, fig.width=5}
 library(tidyverse)
 library(spotifyr)
 library(compmus)
