@@ -126,26 +126,33 @@ library(spotifyr)
 library(compmus)
 library(plotly)
 Shoota2 <-
-  get_tidy_audio_analysis("2BJSMvOGABRxokHKB0OI8i") |> # Change URI.
-  compmus_align(bars, segments) |>                     # Change `bars`
-  select(bars) |>                                      #   in all three
-  unnest(bars) |>                                      #   of these lines.
+  get_tidy_audio_analysis("2BJSMvOGABRxokHKB0OI8i") |>
+  compmus_align(bars, segments) |>
+  select(bars) |>
+  unnest(bars) |>
   mutate(
     pitches =
       map(segments,
           compmus_summarise, pitches,
-          method = "rms", norm = "euclidean"              # Change summary & norm.
+          method = "rms", norm = "euclidean"
       )
   ) |>
   mutate(
-    pitches =
+    timbre =
       map(segments,
-          compmus_summarise, pitches,
-          method = "rms", norm = "euclidean"              # Change summary & norm.
+          compmus_summarise, timbre,
+          method = "mean"
       )
   )
-Shoota2 |>
-  compmus_self_similarity(pitches, "cosine") |> 
+bind_rows(
+  Shoota2 |> 
+    compmus_self_similarity(pitches, "cosine") |> 
+    mutate(d = d / max(d), type = "Chroma"),
+  Shoota2 |> 
+    compmus_self_similarity(timbre, "euclidean") |> 
+    mutate(d = d / max(d), type = "Timbre")
+) |>
+  mutate() |> 
   ggplot(
     aes(
       x = xstart + xduration / 2,
@@ -157,10 +164,10 @@ Shoota2 |>
   ) +
   geom_tile() +
   coord_fixed() +
+  facet_wrap(~type) +
   scale_fill_viridis_c(guide = "none") +
-  theme_classic() +
-  labs(x = "", y = "") + ggtitle("Chroma-Based Self-Similarity Matrix from the song: Shoota")
-
+  theme_classic() + 
+  labs(x = "", y = "") + ggtitle("Self-Similarity Matrix from the song: Shoota")
 ```
 
 
