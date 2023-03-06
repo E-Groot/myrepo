@@ -118,7 +118,7 @@ rockstar |>
 ```
 
 
-### Self-Similarity Matrix(chroma)
+### Self-Similarity Matrices for "Shoota"
 Here we are looking at a self-similarity matrix of the song "Shoota", which is one of the centre points in the first graph when we are looking at valence and energy. This song in my opinion accurately represents a shift in the sound and style of hiphop, reflecting the evolution of the genre and the changing tastes and preferences of its audience. The delivery style and flow of the rapping are very  different, it has a more melodic and sing-song approach in comparison with a more straight forward style of old school hip-hop. Shoota also features a more somewhat more complex and layered production style than the old school hip hop songs and therefore I think it is an interesting song to look at using a self-similarity matrix
 ```{r, fig.width=8, fig.height=6}
 library(tidyverse)
@@ -168,6 +168,54 @@ bind_rows(
   scale_fill_viridis_c(guide = "none") +
   theme_classic() + 
   labs(x = "", y = "") + ggtitle("Self-Similarity Matrix from the song: Shoota")
+```
+
+### Self-Similarity Matrices for "Juicy"
+Let's now have a look at a track from the 90s. One thing that immediately stands out is that the graph contains a lot of unity in terms of chroma. The timbre-based self-similarity matrix shows us the clear structure of the song. Roughly speaking we can see 3 big sections, which are the rapverses of Biggie Smalls and in contrast to these verses we see 2 little blocks and 1 big block at the end of the song which are the hooks which are being sung by a female artist.    
+```{r, fig.width=8, fig.height=6}
+juicy <-
+  get_tidy_audio_analysis("5ByAIlEEnxYdvpnezg7HTX") |>
+  compmus_align(bars, segments) |>
+  select(bars) |>
+  unnest(bars) |>
+  mutate(
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "acentre", norm = "manhattan"
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+          compmus_summarise, timbre,
+          method = "mean"
+      )
+  )
+bind_rows(
+  juicy |> 
+    compmus_self_similarity(pitches, "aitchison") |> 
+    mutate(d = d / max(d), type = "Chroma"),
+  juicy |> 
+    compmus_self_similarity(timbre, "euclidean") |> 
+    mutate(d = d / max(d), type = "Timbre")
+) |>
+  mutate() |> 
+  ggplot(
+    aes(
+      x = xstart + xduration / 2,
+      width = xduration,
+      y = ystart + yduration / 2,
+      height = yduration,
+      fill = d
+    )
+  ) +
+  geom_tile() +
+  coord_fixed() +
+  facet_wrap(~type) +
+  scale_fill_viridis_c(guide = "none") +
+  theme_classic() + 
+  labs(x = "", y = "")
 ```
 
 
