@@ -118,7 +118,7 @@ rockstar |>
 ```
 
 
-### Self-Similarity Matrices for "Shoota"
+### Self-Similarity Matrices and Cepstogram for "Shoota"
 Here we are looking at a self-similarity matrix of the song "Shoota", which is one of the centre points in the first graph when we are looking at valence and energy. This song in my opinion accurately represents a shift in the sound and style of hiphop, reflecting the evolution of the genre and the changing tastes and preferences of its audience. The delivery style and flow of the rapping are very  different, it has a more melodic and sing-song approach in comparison with a more straight forward style of old school hip-hop. Shoota also features a more somewhat more complex and layered production style than the old school hip hop songs and therefore I think it is an interesting song to look at using a self-similarity matrix
 ```{r, fig.width=8, fig.height=6}
 library(tidyverse)
@@ -167,7 +167,42 @@ bind_rows(
   facet_wrap(~type) +
   scale_fill_viridis_c(guide = "none") +
   theme_classic() + 
-  labs(x = "", y = "") + ggtitle("Self-Similarity Matrix from the song: Shoota")
+  labs(x = "", y = "") + ggtitle("Self-Similarity Matrix from the song: Shoota") 
+
+
+Shoota <-
+  get_tidy_audio_analysis("2BJSMvOGABRxokHKB0OI8i") |> # Change URI.
+  compmus_align(bars, segments) |>                     # Change `bars`
+  select(bars) |>                                      #   in all three
+  unnest(bars) |>                                      #   of these lines.
+  mutate(
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  ) |>
+  mutate(
+    timbre =
+      map(segments,
+          compmus_summarise, timbre,
+          method = "rms", norm = "euclidean"              # Change summary & norm.
+      )
+  )
+Shoota |>
+  compmus_gather_timbre() |>
+  ggplot(
+    aes(
+      x = start + duration / 2,
+      width = duration,
+      y = basis,
+      fill = value
+    )
+  ) +
+  geom_tile() +
+  labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
+  scale_fill_viridis_c() +                              
+  theme_classic() +   ggtitle("Cepstogram from Shoota")
 ```
 
 ### Self-Similarity Matrices for "Juicy"
