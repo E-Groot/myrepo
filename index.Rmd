@@ -6,8 +6,7 @@ output:
   flexdashboard::flex_dashboard:
     theme: readable
     vertical_layout: scroll
-editor_options: 
-  chunk_output_type: console
+
 ---
 
 ```{r setup, include=FALSE}
@@ -30,7 +29,9 @@ In this course I want to do research on the difference and similarities between 
 
 The natural groups and comparison points will be these popular tracks from both these time spans. I expect to see an increase in aspects like loudness because of the way music and hip hop beats get produced these days but I am very unsure how other factors like energy, valence and danceability have changed between these two groups. Besides things like this I am interested in how it differs in general or maybe how they have similarities because they both were popular in their own time. 
 
-The strength of my corpus will be that I want to respectively check, with the help of popularity charts and checking the streams of the tracks on Spotify, which tracks were the most popular in these genres in both the 90s and around 2017 to 2023 and use these as a reference point. Hereby I rule out a certain form of subjectivity and my own taste of tracks because I will only focus on tracks that are popular and have a lot of streams. So despite that these two time spans differ a lot and the genre of hip hop/rap has drastically evolved; my comparison groups have one thing in common, they both consist of only really popular tracks. 
+The strength of my corpus will be that I want to respectively check, with the help of popularity charts and checking the streams of the tracks on Spotify, which tracks were the most popular in these genres in both the 90s and around 2017 to 2023 and use these as a reference point. Hereby I rule out a certain form of subjectivity and my own taste of tracks because I will only focus on tracks that are popular and have a lot of streams. So despite that these two time spans differ a lot and the genre of hip hop/rap has drastically evolved; my comparison groups have one thing in common, they both consist of only really popular tracks. On the following page I will represent an interactive plot where you can see all the track names of the selected corpus. 
+
+The SpotifyAPI track features provide a lot of information about how the tracks are classified and which 
 
 ```{r}
 
@@ -40,13 +41,13 @@ The strength of my corpus will be that I want to respectively check, with the he
 
  
 
-Visualisation   
+Getting to know the selected corpus   
 ================================
 Column 
 -----------------------------------------------------------------------
 
-### Looking in to the SpotifyAPI track features. 
-To begin the visualisation of our selected corpus we take a look at the two variables called energy and valence. How do they differ from the 90s to the modern day rap music and is there a correlation between the two variables? Valence and energy are both variables that measure from 0.0 to 1.0. Valence is referring to the emotional quality the music conveys: 1 being very positive, happy and/or uplifting and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example. We can see that there is more fluctuation in the modern rap music when we look at valence and overall we see that the most popular hiphop/rap songs from both time spans all have a relatively high energy, most of them being around 0.5 or higher. It seems like there is a correlation between energy and valence in these popular hiphop/rap songs: when the valence is high, the energy also is relatively high. It's important to mention there are some ouotliers though, such as "Check the Rhime" from A Tribe Called Quest released in 1991. You can hoover over the points in the scatterplot to see the track names, the exact release date and the exact values for the variables energy and valence.
+#### Looking in to the SpotifyAPI track features. 
+To begin the visualisation of the selected corpus let us take a look at two variables called energy and valence. How do they differ from the 90s to the modern day rap music and is there a correlation between the two variables? Valence and energy are both variables that measure from 0.0 to 1.0. Valence is referring to the emotional quality the music conveys: 1 being very positive, happy and/or uplifting and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example. We can see that there is more fluctuation in the modern rap music when we look at valence and overall we see that the most popular hiphop/rap songs from both time spans all have a relatively high energy, most of them being around 0.5 or higher. It seems like there is a correlation between energy and valence in these popular hiphop/rap songs: when the valence is high, the energy also is relatively high. It's important to mention there are some outliers though, such as "Check the Rhime" from A Tribe Called Quest released in 1991. You can hoover over the points in the scatterplot to see the track names, the exact release date and the exact values for the variables energy and valence.
 
 ```{r, fig.width=8, fig.height=6}
 library(tidyverse)
@@ -81,14 +82,18 @@ gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, col
 ggplotly(gg, height=400, width=1000)
 ```
 
-***
-
- 
 
 
-### Chromagram of the outliers 
 
-In the graph about energy and valence we saw some remarkable outliers, one of them being the song "rockstar" from Post Malone featuring 21Savage. Let's take a look at the chromagram of this song. 
+One of the most streamed songs on Spotify {data-navmenu=Visualisation}
+=======================================
+Column 
+-----------------------------------------------------------------------
+
+
+#### Chromagram of the outlier "rockstar (feat. 21 Savage)" 
+
+In the graph about energy and valence we saw some remarkable outliers, one of them being the song "rockstar" from Post Malone featuring 21Savage which consists of the lowest valence of the whole corpus. This song is also the most streamed song of the corpus having above 2.7 billion streams and even is part of the top 5 most streamed songs on Spotify! Let's take a look at the chromagram of this song. A chromagram is used to identify the used pitches in a song. Containing all the 12 pitch classes in our Western tonal system. Herefore it is a very usable tool to represent and analyse an audio-file.
 
 ```{r, fig.height = 5, fig.width=5}
 library(tidyverse)
@@ -118,8 +123,14 @@ rockstar |>
 ```
 
 
-### Self-Similarity Matrices and Cepstogram for "Shoota"
-Here we are looking at a self-similarity matrix of the song "Shoota", which is one of the centre points in the first graph when we are looking at valence and energy. This song in my opinion accurately represents a shift in the sound and style of hiphop, reflecting the evolution of the genre and the changing tastes and preferences of its audience. The delivery style and flow of the rapping are very  different, it has a more melodic and sing-song approach in comparison with a more straight forward style of old school hip-hop. Shoota also features a more somewhat more complex and layered production style than the old school hip hop songs and therefore I think it is an interesting song to look at using a self-similarity matrix
+
+Modern rap song analysis{data-navmenu=Visualisation}
+=======================================
+Column 
+-----------------------------------------------------------------------
+
+#### Self-Similarity Matrices and Cepstogram for "Shoota"
+Here we are looking at a self-similarity matrix of the song "Shoota", which is one of the centre points in the first graph when we are looking at valence and energy. This song in my opinion accurately represents a shift in the sound and style of hiphop, reflecting the evolution of the genre and the changing tastes and preferences of its audience. The delivery style and flow of the rapping are very  different, it has a more melodic and sing-song approach in comparison with a more straight forward style of old school hip-hop. Shoota also features a somewhat more complex and layered production style than the old school hip hop songs and therefore I think it is an interesting song to look at using a self-similarity matrix
 ```{r, fig.width=8, fig.height=6}
 library(tidyverse)
 library(spotifyr)
@@ -205,7 +216,14 @@ Shoota |>
   theme_classic() +   ggtitle("Cepstogram from Shoota")
 ```
 
-### Self-Similarity Matrices for "Juicy"
+
+Old school hip hop song analysis{data-navmenu=Visualisation} 
+=======================================
+Column 
+-----------------------------------------------------------------------
+
+
+#### Self-Similarity Matrices for "Juicy"
 Let's now have a look at a track from the 90s. One thing that immediately stands out is that the graph contains a lot of unity in terms of chroma. The timbre-based self-similarity matrix shows us the clear structure of the song. Roughly speaking we can see 3 big sections, which are the rapverses of Biggie Smalls and in contrast to these verses we see 2 little blocks and 1 big block at the end of the song which are the hooks which are being sung by a female artist.    
 ```{r, fig.width=8, fig.height=6}
 juicy <-
@@ -258,7 +276,7 @@ Conclusion
 =============================
 Column
 -----------------------------------------------------------------------
-### Conclusion/discussion
+#### Conclusion/discussion
 
 ```{r}
 
