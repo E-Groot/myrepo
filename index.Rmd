@@ -87,7 +87,7 @@ ggplotly(gg, height=400, width=1000)
 
 One of the most streamed songs on Spotify {data-navmenu=Visualisation}
 =======================================
-Column 
+Column {data-width=800}
 -----------------------------------------------------------------------
 
 
@@ -122,6 +122,11 @@ rockstar |>
   ggtitle("Chromagram from the song: rockstar (feat. 21 Savage)")
 ```
 
+Column {data-width=200}
+-----------------------------------------------------------------------
+### New box
+here you see blal balblab  anylsis
+fafasdgd
 
 Modern rap song analysis{data-navmenu=Visualisation}
 =======================================
