@@ -4,8 +4,8 @@ author: Elias Groot
 date: "still in progress"
 output: 
   flexdashboard::flex_dashboard:
-    theme: readable
-    vertical_layout: scroll
+    theme: spacelab
+   
 
 ---
 
@@ -25,13 +25,13 @@ Column
 -----------------------------------------------------------------------
 
 #### Hiphop now and then
-In this course I want to do research on the difference and similarities between 'old school hiphop' from the 90s and the modern day rap and hiphop from around 2017 to 2023. I'm interested in how the dynamics have changed and if modern day rap for example contains more energy and danceability and less speechiness or acousticness compared to old school. Therefore my corpus will contain a merged group of tracks of both these periods of hiphop/rap. I will pick some modern day 'rap hits' and some very well known 'old school rap tracks'. 
+In this course I want to do research on the difference and similarities between 'old school hiphop' from the 90s and the modern day rap and hiphop from around 2017 to 2023. The genre evolved drastically and is now considered as one of the most popular genres in contemporary music. I'm interested in how the dynamics have changed and if modern day rap for example differs in the energy and valence or if it contains less speechiness or acousticness compared to old school. Therefore my corpus will contain a merged group of tracks of both these periods of hiphop/rap. I will pick some modern day 'rap hits' and some very well known 'old school rap tracks'. 
 
 The natural groups and comparison points will be these popular tracks from both these time spans. I expect to see an increase in aspects like loudness because of the way music and hip hop beats get produced these days but I am very unsure how other factors like energy, valence and danceability have changed between these two groups. Besides things like this I am interested in how it differs in general or maybe how they have similarities because they both were popular in their own time. 
 
 The strength of my corpus will be that I want to respectively check, with the help of popularity charts and checking the streams of the tracks on Spotify, which tracks were the most popular in these genres in both the 90s and around 2017 to 2023 and use these as a reference point. Hereby I rule out a certain form of subjectivity and my own taste of tracks because I will only focus on tracks that are popular and have a lot of streams. So despite that these two time spans differ a lot and the genre of hip hop/rap has drastically evolved; my comparison groups have one thing in common, they both consist of only really popular tracks. On the following page I will represent an interactive plot where you can see all the track names of the selected corpus. 
 
-The SpotifyAPI track features provide a lot of information about how the tracks are classified and which 
+The SpotifyAPI track features provide a lot of information about how the tracks are classified and what different musical characteristics and qualities they convey. These track features therefore offer a reliable foundation to start off this research.  
 
 ```{r}
 
@@ -92,10 +92,10 @@ Column
 
 
 #### Chromagram of the outlier "rockstar (feat. 21 Savage)" 
+In the graph about energy and valence we saw some remarkable outliers, one of them being the song "rockstar" from Post Malone featuring 21Savage which consists of the lowest valence of the whole corpus. This song is also the most streamed song of the corpus having above 2.7 billion streams and even is part of the top 5 most streamed songs on Spotify! Let's take a look at the chromagram of this song. A chromagram is used to identify the used pitches in a song. Containing all the 12 pitch classes in our Western tonal system. Herefore it is a very usable tool to represent and analyse an audio-file as it gives us a lot of insight about the harmony and movement in the track. Besides the chromagram we are also looking at a so called cepstogram this conveys the timbre with ........ more explaination here
 
-In the graph about energy and valence we saw some remarkable outliers, one of them being the song "rockstar" from Post Malone featuring 21Savage which consists of the lowest valence of the whole corpus. This song is also the most streamed song of the corpus having above 2.7 billion streams and even is part of the top 5 most streamed songs on Spotify! Let's take a look at the chromagram of this song. A chromagram is used to identify the used pitches in a song. Containing all the 12 pitch classes in our Western tonal system. Herefore it is a very usable tool to represent and analyse an audio-file.
 
-```{r, fig.height = 5, fig.width=5}
+```{r}
 library(tidyverse)
 library(spotifyr)
 library(compmus)
@@ -121,7 +121,6 @@ rockstar |>
   scale_fill_viridis_c() +
   ggtitle("Chromagram from the song: rockstar (feat. 21 Savage)")
 ```
-
 
 
 Modern rap song analysis{data-navmenu=Visualisation}
