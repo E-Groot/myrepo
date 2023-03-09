@@ -63,9 +63,9 @@ corpus <- corpus %>%
 
 
 
-gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, color = energy, text = paste(track.name ))) +
+gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, color = energy, text = paste(track.name))) +
     geom_point(size = 2) +
-    scale_x_date(date_breaks = "years", date_labels = "%Y", expand = c(0, 0)) +
+    scale_x_date(date_breaks = "years", date_labels = "%Y", expand = c(0, 0)) + xlab("Date") + 
     xlim(as.Date("1990-01-01","2001-01-01"), as.Date("2014-01-01", "2023-12-31")) + 
     scale_y_continuous(expand = c(0, 0), limits = c(0, 1)) +
     labs(x = "Release Date", y = "Valence",
@@ -80,9 +80,20 @@ gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, col
   facet_wrap(~new_year, scales = "free") 
     
 ggplotly(gg, height=400, width=1000)
+ 
 ```
 
-
+#### Danceability and Speechiness
+agadgadgagdagdagadgadg
+```{r, fig.width=8, fig.height=6}
+gg2 <- ggplot(corpus, aes(x = speechiness, y = danceability, color = new_year, text = paste(track.name))) +
+  geom_point() +
+  ylab("Danceability") +
+  ggtitle("Scatter Plot of Danceability and Speechiness") +
+   geom_smooth(aes(group = new_year, color = new_year), method = "gam", se = TRUE) +
+  scale_y_continuous(limits = c(0.4, 1))
+ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=400, width=1000)
+```
 
 
 One of the most streamed songs on Spotify {data-navmenu=Visualisation}
