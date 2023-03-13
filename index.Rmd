@@ -4,8 +4,8 @@ author: Elias Groot
 date: "still in progress"
 output: 
   flexdashboard::flex_dashboard:
-    theme: spacelab
-   
+    theme: yeti
+ 
 
 ---
 
@@ -24,7 +24,7 @@ Introduction
 Column  
 -----------------------------------------------------------------------
 
-#### Hiphop now and then
+#### 
 In this course I want to do research on the difference and similarities between 'old school hiphop' from the 90s and the modern day rap and hiphop from around 2017 to 2023. The genre evolved drastically and is now considered as one of the most popular genres in contemporary music. I'm interested in how the dynamics have changed and if modern day rap for example differs in the energy and valence or if it contains less speechiness or acousticness compared to old school. Therefore my corpus will contain a merged group of tracks of both these periods of hiphop/rap. I will pick some modern day 'rap hits' and some very well known 'old school rap tracks'. 
 
 The natural groups and comparison points will be these popular tracks from both these time spans. I expect to see an increase in aspects like loudness because of the way music and hip hop beats get produced these days but I am very unsure how other factors like energy, valence and danceability have changed between these two groups. Besides things like this I am interested in how it differs in general or maybe how they have similarities because they both were popular in their own time. 
@@ -41,15 +41,12 @@ The SpotifyAPI track features provide a lot of information about how the tracks 
 
  
 
-Getting to know the selected corpus   
+SpotifyAPI track features {data-navmenu="Getting to know the selected corpus"}
 ================================
-Column 
+Column {data-width=650}
 -----------------------------------------------------------------------
 
-#### Looking in to the SpotifyAPI track features. 
-To begin the visualisation of the selected corpus let us take a look at two variables called energy and valence. How do they differ from the 90s to the modern day rap music and is there a correlation between the two variables? Valence and energy are both variables that measure from 0.0 to 1.0. Valence is referring to the emotional quality the music conveys: 1 being very positive, happy and/or uplifting and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example. We can see that there is more fluctuation in the modern rap music when we look at valence and overall we see that the most popular hiphop/rap songs from both time spans all have a relatively high energy, most of them being around 0.5 or higher. It seems like there is a correlation between energy and valence in these popular hiphop/rap songs: when the valence is high, the energy also is relatively high. It's important to mention there are some outliers though, such as "Check the Rhime" from A Tribe Called Quest released in 1991. You can hoover over the points in the scatterplot to see the track names, the exact release date and the exact values for the variables energy and valence.
-
-```{r, fig.width=8, fig.height=6}
+```{r}
 library(tidyverse)
 library(spotifyr)
 library(plotly)
@@ -69,7 +66,7 @@ gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, col
     xlim(as.Date("1990-01-01","2001-01-01"), as.Date("2014-01-01", "2023-12-31")) + 
     scale_y_continuous(expand = c(0, 0), limits = c(0, 1)) +
     labs(x = "Release Date", y = "Valence",
-         title = "Valence and Energy of Popular Hip Hop and Rap Songs", subtitle = "90s vs 2015-2023", color = "Energy") +
+         title = "The Distribution of Valence and Energy", subtitle = "90s vs 2015-2023", color = "Energy") +
     scale_color_gradient(low = "blue", high = "red") + theme_bw() + theme(panel.grid = element_blank(),
           plot.title = element_text(size = 18, face = "bold"),
           plot.subtitle = element_text(size = 14, face = "italic"),
@@ -79,20 +76,37 @@ gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, col
           legend.text = element_text(size = 10)) +
   facet_wrap(~new_year, scales = "free") 
     
-ggplotly(gg, height=400, width=1000)
+ggplotly(gg, height=650, width=950)
  
 ```
 
+Column {data-width=350} 
+-----------------------------------------------------------------------
+### Getting to know the selected corpus 
+To begin the visualisation of the selected corpus let us take a look at two variables called energy and valence. How do they differ from the 90s to the modern day rap music and is there a correlation between the two variables? Valence and energy are both variables that measure from 0.0 to 1.0. Valence is referring to the emotional quality the music conveys: 1 being very positive, happy and/or uplifting and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example. We can see that there is more fluctuation in the modern rap music when we look at valence and overall we see that the most popular hiphop/rap songs from both time spans all have a relatively high energy, most of them being around 0.5 or higher. It seems like there is a correlation between energy and valence in these popular hiphop/rap songs: when the valence is high, the energy also is relatively high. It's important to mention that there are some exceptions to this though, such as "Check the Rhime" from A Tribe Called Quest released in 1991. You can hoover over the points in the scatter plot to see the track names, the exact release date and the exact values for the variables energy and valence; if you are familiar with 90s hip hop or popular rap songs from recent years you will probably recognize some of the track names!  
+
+
+Danceability and Speechiness {data-navmenu="Getting to know the selected corpus"}
+================================
+Column 
+-----------------------------------------------------------------------
+
 #### Danceability and Speechiness
 agadgadgagdagdagadgadg
-```{r, fig.width=8, fig.height=6}
+```{r}
 gg2 <- ggplot(corpus, aes(x = speechiness, y = danceability, color = new_year, text = paste(track.name))) +
   geom_point() +
   ylab("Danceability") +
   ggtitle("Scatter Plot of Danceability and Speechiness") +
    geom_smooth(aes(group = new_year, color = new_year), method = "gam", se = TRUE) +
-  scale_y_continuous(limits = c(0.4, 1))
-ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=400, width=1000)
+  scale_y_continuous(limits = c(0.4, 1)) + theme_bw() +theme(
+          plot.title = element_text(size = 18, face = "bold"),
+          plot.subtitle = element_text(size = 14, face = "italic"),
+          axis.title = element_text(size = 12),
+          axis.text = element_text(size = 10),
+          legend.title = element_text(size = 12),
+          legend.text = element_text(size = 10)) 
+ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=650, width=950)
 ```
 
 
@@ -139,9 +153,11 @@ Column {data-width=200}
 here you see blal balblab  anylsis
 fafasdgd
 
+
+
 Modern rap song analysis{data-navmenu=Visualisation}
 =======================================
-Column 
+Column {data-width=600}
 -----------------------------------------------------------------------
 
 #### Self-Similarity Matrices and Cepstogram for "Shoota"
@@ -194,8 +210,13 @@ bind_rows(
   scale_fill_viridis_c(guide = "none") +
   theme_classic() + 
   labs(x = "", y = "") + ggtitle("Self-Similarity Matrix from the song: Shoota") 
+```
 
 
+Column {data-width=400}
+-----------------------------------------------------------------------
+### What is a Cepstogram? 
+```{r}
 Shoota <-
   get_tidy_audio_analysis("2BJSMvOGABRxokHKB0OI8i") |> # Change URI.
   compmus_align(bars, segments) |>                     # Change `bars`
