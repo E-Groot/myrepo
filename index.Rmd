@@ -88,17 +88,15 @@ To begin the visualisation of the selected corpus let us take a look at two vari
 
 Danceability and Speechiness {data-navmenu="Getting to know the selected corpus"}
 ================================
-Column 
+Column  {data-width=650}
 -----------------------------------------------------------------------
 
-#### Danceability and Speechiness
-agadgadgagdagdagadgadg
 ```{r}
 gg2 <- ggplot(corpus, aes(x = speechiness, y = danceability, color = new_year, text = paste(track.name))) +
   geom_point() +
   ylab("Danceability") +
   ggtitle("Scatter Plot of Danceability and Speechiness") +
-   geom_smooth(aes(group = new_year, color = new_year), method = "gam", se = TRUE) +
+   geom_smooth(aes(group = new_year, color = new_year), method = "loess", se = FALSE) + 
   scale_y_continuous(limits = c(0.4, 1)) + theme_bw() +theme(
           plot.title = element_text(size = 18, face = "bold"),
           plot.subtitle = element_text(size = 14, face = "italic"),
@@ -110,7 +108,27 @@ ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=650,
 ```
 
 
-One of the most streamed songs on Spotify {data-navmenu=Visualisation}
+Column {data-width=350} 
+-----------------------------------------------------------------------
+We see that ... explaination ... when using the LOESS method, however when we use the GAM method we get this. 
+```{r}
+gg2 <- ggplot(corpus, aes(x = speechiness, y = danceability, color = new_year, text = paste(track.name))) +
+  geom_point() +
+  ylab("Danceability") +
+  ggtitle("Another regression line") +
+   geom_smooth(aes(group = new_year, color = new_year), method = "gam", se = FALSE) + 
+  scale_y_continuous(limits = c(0.4, 1)) + theme_bw() +theme(
+          plot.title = element_text(size = 18, face = "bold"),
+          plot.subtitle = element_text(size = 14, face = "italic"),
+          axis.title = element_text(size = 12),
+          axis.text = element_text(size = 10),
+          legend.title = element_text(size = 12),
+          legend.text = element_text(size = 10)) 
+ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=400, width=450)
+```
+
+
+One of the most streamed songs on Spotify {data-navmenu="Further Visualisation and Analysis"}
 =======================================
 Column {data-width=800}
 -----------------------------------------------------------------------
@@ -155,7 +173,7 @@ fafasdgd
 
 
 
-Modern rap song analysis{data-navmenu=Visualisation}
+Modern rap song analysis{data-navmenu="Further Visualisation and Analysis"}
 =======================================
 Column {data-width=600}
 -----------------------------------------------------------------------
@@ -253,7 +271,7 @@ Shoota |>
 ```
 
 
-Old school hip hop song analysis{data-navmenu=Visualisation} 
+Old school hip hop song analysis{data-navmenu="Further Visualisation and Analysis"} 
 =======================================
 Column 
 -----------------------------------------------------------------------
