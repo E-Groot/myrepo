@@ -5,6 +5,7 @@ date: "still in progress"
 output: 
   flexdashboard::flex_dashboard:
     theme: yeti
+    orientation: columns
  
 
 ---
@@ -61,7 +62,7 @@ corpus <- corpus %>%
 
 
 gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, color = energy, text = paste(track.name))) +
-    geom_point(size = 2) +
+    geom_point(size = 2, position = position_dodge(width = 0.90)) +
     scale_x_date(date_breaks = "years", date_labels = "%Y", expand = c(0, 0)) + xlab("Date") + 
     xlim(as.Date("1990-01-01","2001-01-01"), as.Date("2014-01-01", "2023-12-31")) + 
     scale_y_continuous(expand = c(0, 0), limits = c(0, 1)) +
@@ -127,6 +128,155 @@ gg2 <- ggplot(corpus, aes(x = speechiness, y = danceability, color = new_year, t
 ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=400, width=450)
 ```
 
+Comparing the Spotify Timbre Coefficients of hiphop from the 90's and modern rap{data-navmenu="Getting to know the selected corpus"}
+=======================================
+Column
+-----------------------------------------------------------------------
+### What is timbre and what are timbre coefficients? 
+
+```{r}
+library(tidyverse)
+library(spotifyr)
+library(compmus)
+
+oldschool <-
+  get_playlist_audio_features(
+    "90s group",
+    "5Jr1QNqt0KKGZNtzGy4JGt"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+modern <-
+  get_playlist_audio_features(
+    "modern group",
+    "0v7t96LzxzjtGPKM4JVfNJ"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+OldSchoolvsModern<-
+   oldschool|>
+  mutate(genre = "oldschool") |>
+  bind_rows(modern |> mutate(genre = "modern"))
+
+OldSchoolvsModern|>
+  mutate(
+    timbre =
+      map(
+        segments,
+        compmus_summarise,
+        timbre,
+        method = "mean"
+      )
+  ) |>
+  select(genre, timbre) |>
+  compmus_gather_timbre() |>
+  ggplot(aes(x = basis, y = value, fill = genre)) +
+  geom_violin() +
+  scale_fill_viridis_d() +
+  labs(x = "Spotify Timbre Coefficients", y = "", fill = "Genre")
+```
+
+Comparing the mean tempo of both periods and looking further into the loudness variable{data-navmenu="Getting to know the selected corpus"}
+=======================================
+Column
+-----------------------------------------------------------------------
+### another box 
+```{r}
+library(tidyverse)
+library(spotifyr)
+library(compmus)
+
+oldschool <-
+  get_playlist_audio_features(
+    "90s group",
+    "5Jr1QNqt0KKGZNtzGy4JGt"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+modern <-
+  get_playlist_audio_features(
+    "modern group",
+    "0v7t96LzxzjtGPKM4JVfNJ"
+  ) |>
+  slice(1:30) |>
+  add_audio_analysis()
+OldSchoolvsModern<-
+   oldschool|>
+  mutate(genre = "oldschool") |>
+  bind_rows(modern |> mutate(genre = "modern"))
+
+OldSchoolvsModern |>
+  mutate(
+    sections =
+      map(
+        sections,                                    # sections or segments
+        summarise_at,
+        vars(tempo, loudness, duration),             # features of interest
+        list(section_mean = mean, section_sd = sd)   # aggregation functions
+      )
+  ) |>
+  unnest(sections) |>
+  ggplot(
+    aes(
+      x = tempo,
+      y = tempo_section_sd,
+      colour = genre,
+      alpha = loudness
+    )
+  ) +
+  geom_point(aes(size = duration / 60)) +
+  geom_rug() +
+  theme_minimal() +
+  ylim(0, 5) +
+  labs(
+    x = "Mean Tempo (bpm)",
+    y = "SD Tempo",
+    colour = "Genre",
+    size = "Duration (min)",
+    alpha = "Volume (dBFS)"
+  )
+```
+
+
+Column
+-----------------------------------------------------------------------
+### another other box 
+One of my hypotheses was that modern rap music would have higher loudness than 90s hiphop music. This boxplot shows that the modern rap music has a higher median, but that the 90's actually has the highest max loudness value of the whole corpus! The range of loudness for 90s hip hop music (from -14.73 to -2.43) is way wider than that of modern rap music (from -9.31 to -3.37, 
+when we leave out the outlier), this indicates that there is greater variability in loudness within 90's hip hop music; the interquartile range from both boxplots are a good visual representation for this. Overall, the boxplots suggest that modern rap music tends to be louder than 90's hip hop music on average; because it has a more concentrated distribution of loudness values and has a higher median whilst the IQR range is way smaller. Nevertheless it is noteworthy to mention that the third quartile of the 90's hip hop is higher than the modern rap music and, like I mentioned earlier, the loudest track of this corpus is from the 90's. However, the possibility of these tracks being remastered or other factors that may have affected the loudness of the music cannot be ruled out based on the boxplots alone and this could be a really decisive factor on why the 90's boxplot has the highest max loudness value. This corpus only uses the most popular tracks and therefore it makes sense to assume these tracks have been remastered before they where uploaded on Spotify. 
+```{r}
+library(tidyverse)
+library(spotifyr)
+library(compmus)
+library(plotly)
+
+
+corpus <- get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO")
+corpus <- corpus %>%
+  mutate(new_year = case_when(
+    track.album.release_date < 2000 ~ "90s",
+    track.album.release_date >= 2000 ~ "modern"
+  ))
+
+Loudness <- ggplot(corpus, aes(x = new_year, y = loudness, fill = new_year)) +
+  geom_boxplot(alpha = 0.8, size = 0.5, color = "black") +
+  scale_fill_manual(values = c("#FDB813", "#00A3E0")) +
+  labs(x = "Period", y = "Loudness (dB)", fill = "Period") +
+  scale_y_continuous(breaks = seq(-15, 0, by = 1), limits = c(-15, 0)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "bottom",
+    legend.text = element_text(color = "black"),
+    axis.line = element_line(color = "black"),
+    axis.text = element_text(color = "black"),
+    axis.title = element_text(color = "black", face = "bold"),
+    panel.grid.major = element_blank()
+  ) +
+  ggtitle("Loudness by Period") +
+  theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5, color = "black"))
+
+ggplotly(Loudness)
+```
+
 
 One of the most streamed songs on Spotify {data-navmenu="Further Visualisation and Analysis"}
 =======================================
@@ -170,7 +320,6 @@ Column {data-width=200}
 ### New box
 here you see blal balblab  anylsis
 fafasdgd
-
 
 
 Modern rap song analysis{data-navmenu="Further Visualisation and Analysis"}
