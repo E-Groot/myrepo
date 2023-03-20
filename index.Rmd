@@ -4,7 +4,7 @@ author: Elias Groot
 date: "still in progress"
 output: 
   flexdashboard::flex_dashboard:
-    theme: yeti
+    theme: paper 
     storyboard: true
  
 
@@ -322,7 +322,7 @@ here you see blal balblab  anylsis
 fafasdgd
 
 
-Modern rap song analysis {.storyboard}
+In depth analysis of the song "Shoota" {.storyboard}
 =======================================
 
 ### Self-Similarity Matrices for "Shoota"
