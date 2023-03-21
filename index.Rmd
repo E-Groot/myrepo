@@ -4,8 +4,8 @@ author: Elias Groot
 date: "still in progress"
 output: 
   flexdashboard::flex_dashboard:
-    theme: yeti 
-    storyboard: true
+    theme: cerulean  
+
  
 
 ---
@@ -22,15 +22,11 @@ library(compmus)
 ```
 Introduction
 ==============================
-Column  
------------------------------------------------------------------------
-
-#### 
 In this course I want to do research on the difference and similarities between 'old school hiphop' from the 90s and the modern day rap and hiphop from around 2017 to 2023. The genre evolved drastically and is now considered as one of the most popular genres in contemporary music. I'm interested in how the dynamics have changed and if modern day rap for example differs in the energy and valence or if it contains less speechiness or acousticness compared to old school. Therefore my corpus will contain a merged group of tracks of both these periods of hiphop/rap. I will pick some modern day 'rap hits' and some very well known 'old school rap tracks'. 
 
 The natural groups and comparison points will be these popular tracks from both these time spans. I expect to see an increase in aspects like loudness because of the way music and hip hop beats get produced these days but I am very unsure how other factors like energy, valence and danceability have changed between these two groups. Besides things like this I am interested in how it differs in general or maybe how they have similarities because they both were popular in their own time. 
 
-The strength of my corpus will be that I want to respectively check, with the help of popularity charts and checking the streams of the tracks on Spotify, which tracks were the most popular in these genres in both the 90s and around 2017 to 2023 and use these as a reference point. Hereby I rule out a certain form of subjectivity and my own taste of tracks because I will only focus on tracks that are popular and have a lot of streams. So despite that these two time spans differ a lot and the genre of hip hop/rap has drastically evolved; my comparison groups have one thing in common, they both consist of only really popular tracks. On the following page I will represent an interactive plot where you can see all the track names of the selected corpus. 
+The strength of my corpus will be that I want to respectively check, with the help of popularity charts and checking the streams of the tracks on Spotify, which tracks were the most popular in these genres in both the 90s and around 2017 to 2023 and use these as a reference point. Hereby I rule out a certain form of subjectivity and my own taste of tracks because I will only focus on tracks that are popular and have a lot of streams. So despite that these two time spans differ a lot and the genre of hip hop/rap has drastically evolved; my comparison groups have one thing in common, they both consist of only really popular tracks. On the right you can see the playlist that I have made that we will research in the following pages. 
 
 The SpotifyAPI track features provide a lot of information about how the tracks are classified and what different musical characteristics and qualities they convey. These track features therefore offer a reliable foundation to start off this research.  
 
@@ -39,10 +35,7 @@ The SpotifyAPI track features provide a lot of information about how the tracks 
 ```
 
 
-
- 
-
-SpotifyAPI track features {data-navmenu="Getting to know the selected corpus"}
+Valence and Energy {data-navmenu="Getting to know the selected corpus"}
 ================================
 Column {data-width=650}
 -----------------------------------------------------------------------
@@ -55,20 +48,20 @@ corpus <- get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO")
 
 corpus <- corpus %>%
   mutate(new_year = case_when(
-    track.album.release_date < 2000 ~ "Early",
-    track.album.release_date >= 2000 ~ "Late"
+    track.album.release_date < 2000 ~ "oldschool",
+    track.album.release_date >= 2000 ~ "modern"
   ))
 
 
 
 gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, color = energy, text = paste(track.name))) +
     geom_point(size = 2, position = position_dodge(width = 0.90)) +
-    scale_x_date(date_breaks = "years", date_labels = "%Y", expand = c(0, 0)) + xlab("Date") + 
+    scale_x_date(date_breaks = "years", date_labels = "%Y", expand = c(0, 0)) + xlab("Date") + scale_colour_gradient(low = "blue", high = "red") +
     xlim(as.Date("1990-01-01","2001-01-01"), as.Date("2014-01-01", "2023-12-31")) + 
     scale_y_continuous(expand = c(0, 0), limits = c(0, 1)) +
     labs(x = "Release Date", y = "Valence",
          title = "The Distribution of Valence and Energy", subtitle = "90s vs 2015-2023", color = "Energy") +
-    scale_color_gradient(low = "blue", high = "red") + theme_bw() + theme(panel.grid = element_blank(),
+     theme_bw() + theme(panel.grid = element_blank(),
           plot.title = element_text(size = 18, face = "bold"),
           plot.subtitle = element_text(size = 14, face = "italic"),
           axis.title = element_text(size = 12),
@@ -77,14 +70,14 @@ gg <- ggplot(corpus, aes(x = as.Date(track.album.release_date), y = valence, col
           legend.text = element_text(size = 10)) +
   facet_wrap(~new_year, scales = "free") 
     
-ggplotly(gg, height=650, width=950)
+ggplotly(gg, height=680, width=950)
  
 ```
 
 Column {data-width=350} 
 -----------------------------------------------------------------------
-### Getting to know the selected corpus 
-To begin the visualisation of the selected corpus let us take a look at two variables called energy and valence. How do they differ from the 90s to the modern day rap music and is there a correlation between the two variables? Valence and energy are both variables that measure from 0.0 to 1.0. Valence is referring to the emotional quality the music conveys: 1 being very positive, happy and/or uplifting and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example. We can see that there is more fluctuation in the modern rap music when we look at valence and overall we see that the most popular hiphop/rap songs from both time spans all have a relatively high energy, most of them being around 0.5 or higher. It seems like there is a correlation between energy and valence in these popular hiphop/rap songs: when the valence is high, the energy also is relatively high. It's important to mention that there are some exceptions to this though, such as "Check the Rhime" from A Tribe Called Quest released in 1991. You can hoover over the points in the scatter plot to see the track names, the exact release date and the exact values for the variables energy and valence; if you are familiar with 90s hip hop or popular rap songs from recent years you will probably recognize some of the track names!  
+### Is there a correlation between valence and energy? 
+To begin the visualisation of the selected corpus let us take a look at two variables called energy and valence. How do they differ from the 90s to the modern day rap music and is there a correlation between the two variables? Valence and energy are both variables that measure from 0.0 to 1.0. Valence is referring to the emotional quality the music conveys: 1 being very positive, happy and/or uplifting and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example. We can see that there is more fluctuation in the modern rap music when we look at valence and overall we see that the most popular hiphop/rap songs from both time spans all have a relatively high energy, most of them being around 0.5 or higher and that overall the "Early" graph which is representing the 90s, has more tracks with higher valence compared to the later period. It seems like there is a correlation between energy and valence in these popular hiphop/rap songs in both periods: when the valence is high, the energy also is relatively high. It's important to mention that there are some exceptions to this though, such as "Check the Rhime" from A Tribe Called Quest released in 1991 (the blue dot in the upper left corner of the "Early" graph). You can hoover over the points in the scatter plot to see the track names, the exact release date and the exact values for the variables energy and valence; if you are familiar with 90's hiphop or popular rap songs from recent years you will probably recognize some of the track names!  
 
 
 Danceability and Speechiness {data-navmenu="Getting to know the selected corpus"}
@@ -105,19 +98,20 @@ gg2 <- ggplot(corpus, aes(x = speechiness, y = danceability, color = new_year, t
           axis.text = element_text(size = 10),
           legend.title = element_text(size = 12),
           legend.text = element_text(size = 10)) 
-ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=650, width=950)
+ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=680, width=950)
 ```
 
 
 Column {data-width=350} 
 -----------------------------------------------------------------------
+### Is there a correlation between speechiness and danceability?
 We see that ... explaination ... when using the LOESS method, however when we use the GAM method we get this. 
 ```{r}
 gg2 <- ggplot(corpus, aes(x = speechiness, y = danceability, color = new_year, text = paste(track.name))) +
   geom_point() +
   ylab("Danceability") +
   ggtitle("Another regression line") +
-   geom_smooth(aes(group = new_year, color = new_year), method = "gam", se = FALSE) + 
+   geom_smooth(aes(group = new_year, color = new_year), method = "gam", se = FALSE) +
   scale_y_continuous(limits = c(0.4, 1)) + theme_bw() +theme(
           plot.title = element_text(size = 18, face = "bold"),
           plot.subtitle = element_text(size = 14, face = "italic"),
@@ -130,22 +124,13 @@ ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=400,
 
 Comparing the Spotify Timbre Coefficients of hiphop from the 90's and modern rap{data-navmenu="Getting to know the selected corpus"}
 =======================================
-Column
+Column {data-width=650}
 -----------------------------------------------------------------------
-### What is timbre and what are timbre coefficients? 
-
-```{r}
+```{r, fig.width=10, fig.height=7}
 library(tidyverse)
 library(spotifyr)
 library(compmus)
 
-oldschool <-
-  get_playlist_audio_features(
-    "90s group",
-    "5Jr1QNqt0KKGZNtzGy4JGt"
-  ) |>
-  slice(1:30) |>
-  add_audio_analysis()
 modern <-
   get_playlist_audio_features(
     "modern group",
@@ -153,35 +138,95 @@ modern <-
   ) |>
   slice(1:30) |>
   add_audio_analysis()
-OldSchoolvsModern<-
-   oldschool|>
-  mutate(genre = "oldschool") |>
-  bind_rows(modern |> mutate(genre = "modern"))
-
-OldSchoolvsModern|>
-  mutate(
-    timbre =
-      map(
-        segments,
-        compmus_summarise,
-        timbre,
-        method = "mean"
-      )
+oldschool <-
+  get_playlist_audio_features(
+    "90s group",
+    "5Jr1QNqt0KKGZNtzGy4JGt"
   ) |>
-  select(genre, timbre) |>
-  compmus_gather_timbre() |>
-  ggplot(aes(x = basis, y = value, fill = genre)) +
+  slice(1:30) |>
+  add_audio_analysis()
+OldSchoolvsModern<-
+  modern|>
+  mutate(genre = "modern") |>
+  bind_rows(oldschool |> mutate(genre = "oldschool"))
+
+df <- OldSchoolvsModern %>%
+  mutate(
+    timbre = map(
+      segments,
+      compmus_summarise,
+      timbre,
+      method = "mean"
+    )
+  ) %>%
+  select(genre, timbre) %>%
+  compmus_gather_timbre()
+
+df$genre <- factor(df$genre, levels = c("oldschool", "modern"))
+
+ggplot(df, aes(x = basis, y = value, fill = genre)) +
   geom_violin() +
   scale_fill_viridis_d() +
   labs(x = "Spotify Timbre Coefficients", y = "", fill = "Genre")
 ```
 
-Comparing the mean tempo of both periods and looking further into the loudness variable{data-navmenu="Getting to know the selected corpus"}
-=======================================
-Column
+
+Column {data-width=350}
 -----------------------------------------------------------------------
-### another box 
+### What is timbre and what are timbre coefficients? 
+This graph conveys the Spotify timbre coefficients Timbre is everything about an audio file that is separated from the sound qualities pitch, duration and volume. Timbre can be seen as a tone color or tone quality. For example, think about a violin and a piano that would both play a musical tone like C4. This tone could have the same pitch, same duration and the same volume but will differ in timbre. Timbre is the tone quality and tone color of a specific sound; it is a comprehensive concept that is sometimes difficult to put into words and can also be difficult to visualise. This graph contains the 12 timbre coefficients that Spotify uses to analyse an audio file and this is pretty ambigious to interprete. The only people who have assigned a real meaning to them are Spotify engineers, and they've kept information about this exact meaning of these values strictly internal. When we take a quick look, there seems to be a lot of similarity between the two, but there are also significant differences in shape and range in certain coefficients. For example at c05, c07 and c08. The first coefficient actually is based on the loudness variable; so besides the fact volume usually isn't a factor in timbre, Spotify uses loudness as one of their timbre coefficients. Try to take a good look at c01 before going to the next page, or feel free to come back to this page after visiting the next, although small, this graph has visualized the specific values of the loudness variable of this corpus very accurately and it is fun to see how you can recognize the shape of the boxplots I will present on the next page into these shapes! 
+
+Looking further into the loudness variable{data-navmenu="Getting to know the selected corpus"}
+=======================================
+Column{data-width=650} 
+-----------------------------------------------------------------------
 ```{r}
+library(tidyverse)
+library(spotifyr)
+library(compmus)
+library(plotly)
+
+
+corpus <- get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO")
+corpus <- corpus %>%
+  mutate(new_year = case_when(
+    track.album.release_date < 2000 ~ "90s",
+    track.album.release_date >= 2000 ~ "modern"
+  ))
+
+Loudness <- ggplot(corpus, aes(x = new_year, y = loudness, fill = new_year)) +
+  geom_boxplot(alpha = 0.8, size = 0.5, color = "black") +
+  scale_fill_manual(values = c("#56B1F7", "#FDB813")) + 
+  labs(x = "Period", y = "Loudness (dB)", fill = "Period") +
+  scale_y_continuous(breaks = seq(-15, 0, by = 1), limits = c(-15, 0)) +
+  theme_minimal(base_size = 14) +
+  theme(
+    legend.position = "bottom",
+    legend.text = element_text(color = "black"),
+    axis.line = element_line(color = "black"),
+    axis.text = element_text(color = "black"),
+    axis.title = element_text(color = "black", face = "bold"),
+    panel.grid.major = element_blank()
+  ) +
+  ggtitle("Loudness by Period") +
+  theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5, color = "black"))
+
+ggplotly(Loudness, height=680, width=950)
+```
+
+Column {data-width=350} 
+-----------------------------------------------------------------------
+### Conclusions and assumptions based on the boxplots
+One of my hypotheses was that modern rap music would have higher loudness than 90s hiphop music. This boxplot shows that the modern rap music has a higher median, but that the 90's actually has the highest max loudness value of the whole corpus! The range of loudness for 90s hip hop music (from -14.73 to -2.43) is way wider than that of modern rap music (from -9.31 to -3.37, 
+when we leave out the outlier), this indicates that there is greater variability in loudness within 90's hip hop music; the interquartile range from both boxplots are a good visual representation for this. Overall, the boxplots suggest that modern rap music tends to be louder than 90's hip hop music on average; because it has a more concentrated distribution of loudness values and has a higher median whilst the IQR range is way smaller. Nevertheless it is noteworthy to mention that the third quartile of the 90's hip hop is higher than the modern rap music and, like I mentioned earlier, the loudest track of this corpus is from the 90's. However, the possibility of these tracks being remastered or other factors that may have affected the loudness of the music cannot be ruled out based on the boxplots alone and this could be a really decisive factor on why the 90's boxplot has the highest max loudness value. This corpus only consists of the most popular tracks and therefore it makes sense to assume these tracks have been remastered before they where uploaded on Spotify. 
+
+
+
+Comparing the mean tempo (BPM) of both periods{data-navmenu="Getting to know the selected corpus"}
+=======================================
+Column {data-width=650} 
+-----------------------------------------------------------------------
+```{r, fig.width=10, fig.height=7}
 library(tidyverse)
 library(spotifyr)
 library(compmus)
@@ -235,60 +280,25 @@ OldSchoolvsModern |>
     size = "Duration (min)",
     alpha = "Volume (dBFS)"
   )
+
 ```
 
 
+Column {data-width=350} 
+-----------------------------------------------------------------------
+### Conclusions and assumptions based on the mean tempo and standard deviation
+we can see that the standard deviation overall is very low, this means that there is not a lot of variance in the calculated means of tempo; something we would expect with hiphop and rap music from both these periods, as the beats and rhythm usually are very repetitive and steady. It is a logical conclusion that this also explains why this music on average has such a high danceability, as we saw earlier. Besides the fact that this graph shows the BPM's from this corpus as really steady with a low standard deviation, we can see a clear difference between the oldschool hiphop from the 90's and the modern rap music. As the oldschool hiphop music (apart from the 3 outliers on the right) has significantly lower mean tempo than the modern rap music. One interesting observation, something we saw earlier in the valence and energy graph too, is that the modern rap music shows a lot of fluctuation in values compared to the 90's period. We can see a steady cluster of some points around 140/150 BPM but also a lot of different BPM's, where the oldschool really has a steady cluster off all the points, besides the 3 outliers with high BPM, from around 80 to roughly 115 BPM
+
+
+One of the most streamed songs on Spotify (chromagram) {data-navmenu="Further Visualisation and Analysis"}
+=======================================
 Column
 -----------------------------------------------------------------------
-### another other box 
-One of my hypotheses was that modern rap music would have higher loudness than 90s hiphop music. This boxplot shows that the modern rap music has a higher median, but that the 90's actually has the highest max loudness value of the whole corpus! The range of loudness for 90s hip hop music (from -14.73 to -2.43) is way wider than that of modern rap music (from -9.31 to -3.37, 
-when we leave out the outlier), this indicates that there is greater variability in loudness within 90's hip hop music; the interquartile range from both boxplots are a good visual representation for this. Overall, the boxplots suggest that modern rap music tends to be louder than 90's hip hop music on average; because it has a more concentrated distribution of loudness values and has a higher median whilst the IQR range is way smaller. Nevertheless it is noteworthy to mention that the third quartile of the 90's hip hop is higher than the modern rap music and, like I mentioned earlier, the loudest track of this corpus is from the 90's. However, the possibility of these tracks being remastered or other factors that may have affected the loudness of the music cannot be ruled out based on the boxplots alone and this could be a really decisive factor on why the 90's boxplot has the highest max loudness value. This corpus only consists of the most popular tracks and therefore it makes sense to assume these tracks have been remastered before they where uploaded on Spotify. 
-```{r}
-library(tidyverse)
-library(spotifyr)
-library(compmus)
-library(plotly)
+### Looking at one of the outliers: "rockstar (feat. 21 Savage)" 
+In the graph about energy and valence we saw some remarkable outliers, one of them being the song "rockstar" from Post Malone featuring 21Savage which consists of the lowest valence of the whole corpus. This song is also the most streamed song of the corpus having above 2.7 billion streams and even is part of the top 5 most streamed songs on Spotify! Let's take a look at the chroma of this song in the forms of a chromagram and chordogram. A chromagram is used to identify the dominant pitches in a song. It contains all the 12 pitch classes (tone height is a irrelevant factor for chroma) from the Western tonal system. Herefore it is a very usable tool to represent and analyse an audio-file, as it gives us a lot of insight about the harmony and movement in the track. Besides the chromagram there is a chordogram to the right; this also uses chroma, but with some computational magic, uses the pitches from the song to estimate played chords. The chroma from this song is actually really interesting as it conveys some music theoretical contradictions that are counterintuitive on first sight. When looking at the chromagram we see two dominant notes besides the C in the intro; the notes C#/Db and G are repeated regularly through out the song and could be seen as the most abundant notes from the chromagram. Besides these two notes we also see some repetitive magnitude in other notes, which at times even show some chromaticism. An interesting nuance to this whole story thus far is that the SpotifyAPI concludes that this song is in F minor (key=5 and mode=0, for pratical reasons I'm not diving too deep in why these particular key and mode values mean this) while we see that the note F throughout the song actually is one of the few notes that has so little magnitude apart from the ending. One logical explaination for this would be that both a C#/Db key or G key dont share the two notes (C#/Db and G), either minor or major. 
 
 
-corpus <- get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO")
-corpus <- corpus %>%
-  mutate(new_year = case_when(
-    track.album.release_date < 2000 ~ "90s",
-    track.album.release_date >= 2000 ~ "modern"
-  ))
-
-Loudness <- ggplot(corpus, aes(x = new_year, y = loudness, fill = new_year)) +
-  geom_boxplot(alpha = 0.8, size = 0.5, color = "black") +
-  scale_fill_manual(values = c("#FDB813", "#00A3E0")) +
-  labs(x = "Period", y = "Loudness (dB)", fill = "Period") +
-  scale_y_continuous(breaks = seq(-15, 0, by = 1), limits = c(-15, 0)) +
-  theme_minimal(base_size = 14) +
-  theme(
-    legend.position = "bottom",
-    legend.text = element_text(color = "black"),
-    axis.line = element_line(color = "black"),
-    axis.text = element_text(color = "black"),
-    axis.title = element_text(color = "black", face = "bold"),
-    panel.grid.major = element_blank()
-  ) +
-  ggtitle("Loudness by Period") +
-  theme(plot.title = element_text(face = "bold", size = 18, hjust = 0.5, color = "black"))
-
-ggplotly(Loudness)
-```
-
-
-One of the most streamed songs on Spotify {data-navmenu="Further Visualisation and Analysis"}
-=======================================
-Column {data-width=800}
------------------------------------------------------------------------
-
-
-#### Chromagram of the outlier "rockstar (feat. 21 Savage)" 
-In the graph about energy and valence we saw some remarkable outliers, one of them being the song "rockstar" from Post Malone featuring 21Savage which consists of the lowest valence of the whole corpus. This song is also the most streamed song of the corpus having above 2.7 billion streams and even is part of the top 5 most streamed songs on Spotify! Let's take a look at the chromagram of this song. A chromagram is used to identify the used pitches in a song. Containing all the 12 pitch classes in our Western tonal system. Herefore it is a very usable tool to represent and analyse an audio-file as it gives us a lot of insight about the harmony and movement in the track. Besides the chromagram we are also looking at a so called cepstogram this conveys the timbre with ........ more explaination here
-
-
-```{r}
+```{r, fig.width=8, fig.height=6}
 library(tidyverse)
 library(spotifyr)
 library(compmus)
@@ -315,12 +325,123 @@ rockstar |>
   ggtitle("Chromagram from the song: rockstar (feat. 21 Savage)")
 ```
 
-Column {data-width=200}
------------------------------------------------------------------------
-### New box
-here you see blal balblab  anylsis
-fafasdgd
 
+### Chordogram of rockstar
+```{r}
+circshift <- function(v, n) {
+  if (n == 0) v else c(tail(v, n), head(v, -n))
+}
+
+#      C     C#    D     Eb    E     F     F#    G     Ab    A     Bb    B
+major_chord <-
+  c(   1,    0,    0,    0,    1,    0,    0,    1,    0,    0,    0,    0)
+minor_chord <-
+  c(   1,    0,    0,    1,    0,    0,    0,    1,    0,    0,    0,    0)
+seventh_chord <-
+  c(   1,    0,    0,    0,    1,    0,    0,    1,    0,    0,    1,    0)
+
+major_key <-
+  c(6.35, 2.23, 3.48, 2.33, 4.38, 4.09, 2.52, 5.19, 2.39, 3.66, 2.29, 2.88)
+minor_key <-
+  c(6.33, 2.68, 3.52, 5.38, 2.60, 3.53, 2.54, 4.75, 3.98, 2.69, 3.34, 3.17)
+
+chord_templates <-
+  tribble(
+    ~name, ~template,
+    "Gb:7", circshift(seventh_chord, 6),
+    "Gb:maj", circshift(major_chord, 6),
+    "Bb:min", circshift(minor_chord, 10),
+    "Db:maj", circshift(major_chord, 1),
+    "F:min", circshift(minor_chord, 5),
+    "Ab:7", circshift(seventh_chord, 8),
+    "Ab:maj", circshift(major_chord, 8),
+    "C:min", circshift(minor_chord, 0),
+    "Eb:7", circshift(seventh_chord, 3),
+    "Eb:maj", circshift(major_chord, 3),
+    "G:min", circshift(minor_chord, 7),
+    "Bb:7", circshift(seventh_chord, 10),
+    "Bb:maj", circshift(major_chord, 10),
+    "D:min", circshift(minor_chord, 2),
+    "F:7", circshift(seventh_chord, 5),
+    "F:maj", circshift(major_chord, 5),
+    "A:min", circshift(minor_chord, 9),
+    "C:7", circshift(seventh_chord, 0),
+    "C:maj", circshift(major_chord, 0),
+    "E:min", circshift(minor_chord, 4),
+    "G:7", circshift(seventh_chord, 7),
+    "G:maj", circshift(major_chord, 7),
+    "B:min", circshift(minor_chord, 11),
+    "D:7", circshift(seventh_chord, 2),
+    "D:maj", circshift(major_chord, 2),
+    "F#:min", circshift(minor_chord, 6),
+    "A:7", circshift(seventh_chord, 9),
+    "A:maj", circshift(major_chord, 9),
+    "C#:min", circshift(minor_chord, 1),
+    "E:7", circshift(seventh_chord, 4),
+    "E:maj", circshift(major_chord, 4),
+    "G#:min", circshift(minor_chord, 8),
+    "B:7", circshift(seventh_chord, 11),
+    "B:maj", circshift(major_chord, 11),
+    "D#:min", circshift(minor_chord, 3)
+  )
+
+key_templates <-
+  tribble(
+    ~name, ~template,
+    "Gb:maj", circshift(major_key, 6),
+    "Bb:min", circshift(minor_key, 10),
+    "Db:maj", circshift(major_key, 1),
+    "F:min", circshift(minor_key, 5),
+    "Ab:maj", circshift(major_key, 8),
+    "C:min", circshift(minor_key, 0),
+    "Eb:maj", circshift(major_key, 3),
+    "G:min", circshift(minor_key, 7),
+    "Bb:maj", circshift(major_key, 10),
+    "D:min", circshift(minor_key, 2),
+    "F:maj", circshift(major_key, 5),
+    "A:min", circshift(minor_key, 9),
+    "C:maj", circshift(major_key, 0),
+    "E:min", circshift(minor_key, 4),
+    "G:maj", circshift(major_key, 7),
+    "B:min", circshift(minor_key, 11),
+    "D:maj", circshift(major_key, 2),
+    "F#:min", circshift(minor_key, 6),
+    "A:maj", circshift(major_key, 9),
+    "C#:min", circshift(minor_key, 1),
+    "E:maj", circshift(major_key, 4),
+    "G#:min", circshift(minor_key, 8),
+    "B:maj", circshift(major_key, 11),
+    "D#:min", circshift(minor_key, 3)
+  )
+
+
+rockstar3 <-
+  get_tidy_audio_analysis("0e7ipj03S05BNilyu5bRzt") |>
+  compmus_align(sections, segments) |>
+  select(sections) |>
+  unnest(sections) |>
+  mutate(
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      )
+  )
+
+rockstar3 |> 
+  compmus_match_pitch_template(
+    chord_templates,         # Change to chord_templates if descired
+    method = "euclidean",  # Try different distance metrics
+    norm = "manhattan"     # Try different norms
+  ) |>
+  ggplot(
+    aes(x = start + duration / 2, width = duration, y = name, fill = d)
+  ) +
+  geom_tile() +
+  scale_fill_viridis_c(guide = "none") +
+  theme_minimal() +
+  labs(x = "Time (s)", y = "") + ggtitle("Chordogram from the song: rockstar (feat. 21 Savage)")
+```
 
 In depth analysis of the song "Shoota" {.storyboard}
 =======================================
