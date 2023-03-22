@@ -48,8 +48,8 @@ corpus <- get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO")
 
 corpus <- corpus %>%
   mutate(new_year = case_when(
-    track.album.release_date < 2000 ~ "oldschool",
-    track.album.release_date >= 2000 ~ "modern"
+    track.album.release_date < 2000 ~ "early",
+    track.album.release_date >= 2000 ~ "late"
   ))
 
 
@@ -190,7 +190,7 @@ library(plotly)
 corpus <- get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO")
 corpus <- corpus %>%
   mutate(new_year = case_when(
-    track.album.release_date < 2000 ~ "90s",
+    track.album.release_date < 2000 ~ "oldschool",
     track.album.release_date >= 2000 ~ "modern"
   ))
 
