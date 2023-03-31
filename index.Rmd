@@ -5,6 +5,8 @@ date: "still in progress"
 output: 
   flexdashboard::flex_dashboard:
     theme: cerulean  
+    vertical_layout: fill 
+    
 
  
 
@@ -17,7 +19,6 @@ library(tidyverse)
 library(spotifyr)
 library(dplyr)
 library(ggplot2)
-remotes::install_github('jaburgoyne/compmus')
 library(compmus)
 ```
 Introduction
@@ -174,7 +175,7 @@ ggplot(df, aes(x = basis, y = value, fill = genre)) +
 Column {data-width=400}
 -----------------------------------------------------------------------
 ### What is timbre and what are timbre coefficients? 
-This graph conveys the Spotify timbre coefficients Timbre is everything about an audio file that is separated from the sound qualities pitch, duration and volume. Timbre can be seen as a tone color or tone quality. For example, think about a violin and a piano that would both play a musical tone like C4. This tone could have the same pitch, same duration and the same volume but will differ in timbre. Timbre is the tone quality and tone color of a specific sound; it is a comprehensive concept that is sometimes difficult to put into words and can also be difficult to visualise. This graph contains the 12 timbre coefficients that Spotify uses to analyse an audio file and this is pretty ambigious to interprete. The only people who have assigned a real meaning to them are Spotify engineers, and they've kept information about this exact meaning of these values strictly internal. When we take a quick look, there seems to be a lot of similarity between the two, but there are also significant differences in shape and range in certain coefficients. For example at c05, c07 and c08. The first coefficient actually is based on the loudness variable; so besides the fact volume usually isn't a factor in timbre, Spotify uses loudness as one of their timbre coefficients. Try to take a good look at c01 before going to the next page, or feel free to come back to this page after visiting the next, although small, this graph has visualized the specific values of the loudness variable of this corpus very accurately and it is fun to see how you can recognize the shape of the boxplots I will present on the next page into these shapes! 
+Timbre is everything about an audio file that is separated from the sound qualities pitch, duration and volume. It can be seen as a tone color or tone quality. For example, think about a violin and a piano that would both play a musical tone like C4: this tone could have the same pitch, same duration and the same volume but will differ in timbre. Timbre is a comprehensive concept that is sometimes difficult to put into words and can therefore be difficult to analyse. This graph contains the 12 timbre coefficients that Spotify uses to analyse an audio file and this is pretty ambiguous to interprete; the only people who have assigned a real meaning to them are Spotify engineers, and they've kept information about this exact meaning of these values strictly internal. When we take a quick look, there seems to be a lot of similarity between the two, on the other hand there are also significant differences in shape and range in certain coefficients, for  example at c05, c07 and c08, this confirms that the timbre of both groups differ. The first coefficient actually is mainly based on the loudness variable; so besides the fact volume usually isn't a factor in timbre, Spotify uses loudness as one of their timbre coefficients. Try to take a good look at c01 before going to the next page, or feel free to come back to this page after visiting the next, although small, this graph has visualized the specific values of the loudness variable of this corpus very accurately and it is fun to see how you can recognize the shape of the boxplots I will present on the next page into these shapes! 
 
 Looking further into the loudness variable{data-navmenu="Getting to know the selected corpus"}
 =======================================
@@ -192,12 +193,12 @@ corpus <- corpus %>%
   mutate(new_year = case_when(
     track.album.release_date < 2000 ~ "oldschool",
     track.album.release_date >= 2000 ~ "modern"
-  ))
+  ), new_year = factor(new_year, levels = c( "oldschool", "modern")))  
 
 Loudness <- ggplot(corpus, aes(x = new_year, y = loudness, fill = new_year)) +
   geom_boxplot(alpha = 0.8, size = 0.5, color = "black") +
   scale_fill_manual(values = c("#56B1F7", "#FDB813")) + 
-  labs(x = "Period", y = "Loudness (dB)", fill = "Period") +
+  labs(x = "Period", y = "Loudness (dBFS)", fill = "Period") +
   scale_y_continuous(breaks = seq(-15, 0, by = 1), limits = c(-15, 0)) +
   theme_minimal(base_size = 14) +
   theme(
@@ -218,7 +219,7 @@ Column {data-width=400}
 -----------------------------------------------------------------------
 ### Conclusions and assumptions based on the boxplots
 One of my hypotheses was that modern rap music would have higher loudness than 90s hiphop music. This boxplot shows that the modern rap music has a higher median, but that the 90's actually has the highest max loudness value of the whole corpus! The range of loudness for 90s hip hop music (from -14.73 to -2.43) is way wider than that of modern rap music (from -9.31 to -3.37, 
-when we leave out the outlier), this indicates that there is greater variability in loudness within 90's hip hop music; the interquartile range from both boxplots are a good visual representation for this. Overall, the boxplots suggest that modern rap music tends to be louder than 90's hip hop music on average; because it has a more concentrated distribution of loudness values and has a higher median whilst the IQR range is way smaller. Nevertheless it is noteworthy to mention that the third quartile of the 90's hip hop is higher than the modern rap music and, like I mentioned earlier, the loudest track of this corpus is from the 90's. However, the possibility of these tracks being remastered or other factors that may have affected the loudness of the music cannot be ruled out based on the boxplots alone and this could be a really decisive factor on why the 90's boxplot has the highest max loudness value. This corpus only consists of the most popular tracks and therefore it makes sense to assume these tracks have been remastered before they where uploaded on Spotify. 
+when we leave out the outlier), this indicates that there is greater variability in loudness within 90's hip hop music; the interquartile range from both boxplots are a good visual representation for this. Overall, the boxplots suggest that modern rap music tends to be louder than 90's hip hop music on average; because it has a more concentrated distribution of loudness values and has a higher median whilst the IQR range is way smaller. Nevertheless, it is noteworthy to mention that the third quartile of the 90's hip hop is higher than the modern rap music and, like I mentioned earlier, the loudest track of this corpus is from the 90's. However, the possibility of these tracks being remastered or other factors that may have affected the loudness of the music cannot be ruled out based on the boxplots alone and this could be a really decisive factor on why the 90's boxplot has the highest max loudness value. This corpus only consists of the most popular tracks and therefore it makes sense to assume these tracks have been remastered before they where uploaded on Spotify. 
 
 
 
@@ -292,7 +293,6 @@ For this graph we are using looking at the mean tempo of all the tracks of the c
 
 One of the most streamed songs on Spotify {.storyboard}
 =======================================
-
 ### Looking at one of the outliers: "rockstar (feat. 21 Savage)"
 In the graph about energy and valence we saw some remarkable outliers, one of them being the song "rockstar" from Post Malone featuring 21Savage which consists of the lowest valence of the whole corpus. This song is also the most streamed song of the corpus having above 2.7 billion streams and even is part of the top 5 most streamed songs on Spotify! Let's take a look at the chroma of this song in the forms of a chromagram and chordogram. A chromagram is used to identify the pitches that are played a song. It contains all the 12 pitch classes (tone height is a irrelevant factor for chroma) from the Western tonal system. Each chroma vector shows the distribution of energy across the twelve chroma bands in a signal's frame. Herefore it is a very usable tool to represent and analyse an audio-file, as it gives us a lot of insight about the harmonic and melodic movement of the track. We can also use these chroma vectors to make other grams, such as a chordogram; this also uses chroma, but with some computational magic, uses the pitches from the song to estimate played chords. The chroma from this song is actually really interesting as it conveys some music theoretical contradictions that are counterintuitive on first sight. When looking at the chromagram we see two dominant notes besides the C in the intro; the notes C#/Db and G are repeated regularly through out the song and could be seen as the most abundant notes from the chromagram. Besides these two notes we also see some repetitive magnitude in other notes, which at times even show some chromaticism. An interesting nuance to this whole story thus far is that the SpotifyAPI concludes that this song is in F minor (key=5 and mode=0) while we can see that the note F throughout the song actually is one of the few notes that has very little magnitude apart from the ending. One logical explanation for a computational algorithm to conclude this would be that both the C#/Db key or G key don't share the two notes (C#/Db and G), either in minor or major modes and therefore both are ruled out as one of the keys. I actually have another theory about the key and don't agree that this song would be in F minor. I think that this song is in the key G minor, due to both my personal, musical intuition and logical reasoning powered by using a chromagram and chordogram
 ```{r}
@@ -320,7 +320,7 @@ rockstargram <- rockstar |>
   theme_minimal() +
   scale_fill_viridis_c() +
   ggtitle("Chromagram from the song: rockstar (feat. 21 Savage)")
-ggplotly(rockstargram, height=500, width=750)
+ggplotly(rockstargram, height=600, width=750)
 ```
 
 
