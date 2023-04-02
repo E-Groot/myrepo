@@ -43,9 +43,9 @@ Column {data-width=300}
 -----------------------------------------------------------------------
 <img src="C:\Users\elias\OneDrive\Documents\PostJay.png" alt="PostMalone and Jay-Z" style="width:95%;">
 
-*This is an AI generated image, made on [Craiyon](https://www.craiyon.com), of two very well known artists: on the left we see Post Malone and on the right Jay-Z. A fun blend of two iconic figures from different eras, with Jay-Z representing the 90s hiphop sound and Post Malone symbolizing the modern day rap style.*
+*This is an AI generated image, made on [Craiyon](https://www.craiyon.com), of two very well known artists: on the left we see Post Malone and on the right Jay-Z. A fun blend of two iconic figures from different eras, with Jay-Z representing the 90s hip-hop sound and Post Malone symbolizing the modern day rap style.*
 
-Valence and Energy {data-navmenu="Getting to know the selected corpus"}
+Valence and Energy {data-navmenu="Getting To Know the Selected Corpus"}
 ================================
 Column {data-width=600}
 -----------------------------------------------------------------------
@@ -90,7 +90,7 @@ Column {data-width=400}
 To begin the visualisation of the selected corpus let's take a look at two variables called energy and valence. How do they differ from the 90s to the modern day rap music and is there a correlation between the two variables? The measurement for both variables ranges from 0.0 to 1.0. Valence is referring to the emotional quality the music conveys: 1 being very positive, happy and/or uplifting and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example. We can see that there is **more fluctuation in the modern rap music when we look at valence**, the old-school graph has more tracks with higher valence compared to the later period, consisting of predominantly values above 0.5. Overall we see that the most popular hip-hop/rap songs from **both time spans generally have high energy values**, most of them being around 0.5 or higher. **It is difficult to determine a clear correlation between energy and valence in these popular hip-hop/rap songs from both periods**: because when we look at the old-school graph the highest values of energy are both located at the lowest and highest values of valence. One possible explanation for this could be that either low or high valence results in high energy. It's important to mention that there are exceptions to this though, such as *'Check the Rhime'* from A Tribe Called Quest released in 1991 (the blue dot in the upper left corner of the "old-school" graph). **There is one significant difference we can conclude between the old-school and modern graph**: the modern period's highest energy values do not correlate with either high or low valence values, where the old-school period has the highest energy on the extreme values of valence, both high and low. You can hoover over the dots of the scatter plot to see the track names, the exact release date and the exact values for both variables; if you are familiar with 90s hip-hop or popular rap songs from recent years, you will probably recognize some of the track names!  
 
 
-Danceability and Speechiness {data-navmenu="Getting to know the selected corpus"}
+Danceability and Speechiness {data-navmenu="Getting To Know the Selected Corpus"}
 ================================
 Column  {data-width=333}
 -----------------------------------------------------------------------
@@ -157,7 +157,7 @@ These graphs examine the relationship between speechiness and danceability from 
 
 
 
-Comparing the Spotify Timbre Coefficients of 90s Hip-Hop and Modern Rap{data-navmenu="Getting to know the selected corpus"}
+Comparing the Spotify Timbre Coefficients of 90s Hip-Hop and Modern Rap{data-navmenu="Getting To Know the Selected Corpus"}
 =======================================
 Column {data-width=600}
 -----------------------------------------------------------------------
@@ -218,7 +218,7 @@ Column {data-width=400}
 #### What Is Timbre and What Are Timbre Coefficients? 
 Timbre is everything about an audio file that is separated from the sound qualities pitch, duration and volume. It can be seen as a tone color or tone quality. For example, think about a violin and a piano that would both play a musical tone like C4: this tone could have the same pitch, same duration and the same volume but will differ in timbre. **Timbre is a comprehensive concept that is sometimes difficult to put into words and can therefore be difficult to analyse.** This graph contains the 12 timbre coefficients that Spotify uses to analyse an audio file and this is pretty ambiguous to interprete; the only people who have assigned a real meaning to them are Spotify engineers, and they've kept information about the exact meaning of these values internal. When we take a quick look, there seems to be a lot of similarity between the two, but on the other hand, when we look more detailed, **there are significant differences in shape and range in certain coefficients, for example at c02, c05, c07, c08 and c11, this confirms that the timbre of both groups differ.** The first coefficient actually is mainly based on the loudness variable; so besides the fact volume usually isn't a factor in timbre, Spotify uses loudness as one of their timbre coefficients. Try to take a good look at c01 before going to the next page, or feel free to come back to this page after visiting the next, although small, this graph has visualized the specific values of the loudness variable of this corpus very accurately and it is fun to see how you can recognize the shape of the boxplots I will present on the next page into these shapes!
 
-Looking Further Into the Loudness Variable{data-navmenu="Getting to know the selected corpus"}
+Looking Further Into the Loudness Variable{data-navmenu="Getting To Know the Selected Corpus"}
 =======================================
 Column{data-width=600} 
 -----------------------------------------------------------------------
@@ -264,7 +264,7 @@ when we leave out the outlier), **this indicates that there is greater variabili
 
 
 
-Comparing the Mean Tempo (BPM) of Both Periods{data-navmenu="Getting to know the selected corpus"}
+Comparing the Mean Tempo (BPM) of Both Periods{data-navmenu="Getting To Know the Selected Corpus"}
 =======================================
 Column {data-width=600} 
 -----------------------------------------------------------------------
