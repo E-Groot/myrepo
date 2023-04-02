@@ -1,7 +1,7 @@
 ---
 title: "Computational Musicology"
 author: Elias Groot
-date: "still in progress"
+date: "April 2nd, 2023"
 output: 
   flexdashboard::flex_dashboard:
     theme: cerulean  
@@ -25,8 +25,8 @@ Introduction
 ==============================
 Column {data-width=700}
 -----------------------------------------------------------------------
-#### Rapping through the Decades: A Computational Analysis of 90s Hip-Hop and Modern Rap Music
-Hip-hop music has been a major cultural force for several decades, with its roots in the African American and Latino communities of the Bronx in the 1970s. Over time, the genre has evolved and branched out into various sub-genres, including gangsta rap, conscious hip hop, and trap music, to name a few. In this course I've been doing research on the difference and similarities between popular 'old school hip-hop' from the 90s and popular modern day rap from around 2017 to 2023. Rap is now considered as one of the most popular genres in contemporary music. I'm interested in how the music has changed and if modern day rap has significant differences compared to 90s hip-hop that can be confirmed by using computational musicology; but I'm also interested in possible similarities. Therefore my corpus will contain a merged group of tracks from both these periods. In the presented analysis of this research I will refer to the popular hip-hop music of the 90s as 'old-school' and the popular rap music from around 2017 to 2023 as 'modern'.
+#### Uncovering the Sounds of Popular Rap: A Computational Analysis of 90s Hip-Hop and Modern Rap Music
+Hip-hop music has been a major cultural force for several decades, with its roots in the African American and Latino communities of the Bronx in the 1970s. Over time, the genre has evolved drastically. In this course I've been doing research on the difference and similarities between popular 'old school hip-hop' from the 90s and popular modern day rap from around 2017 to 2023. Rap is now considered as one of the most popular genres in contemporary music. I'm interested in how the music has changed and if modern day rap has significant differences compared to 90s hip-hop that can be confirmed by using computational musicology; but I'm also interested in possible similarities. Therefore my corpus will contain a merged group of tracks from both these periods. In the presented analysis of this research I will refer to the popular hip-hop music of the 90s as 'old-school' and the popular rap music from around 2017 to 2023 as 'modern'.
 
 As I said, the natural groups and comparison points are popular tracks from both these time spans. One of my hypotheses is that I expect to see an increase in aspects like loudness because of the way music and hip hop beats get produced these days; but I am very unsure how other factors like energy, valence and danceability have changed between these two groups. Besides that I also assume that modern rap will feature more electronic and digital production elements than 90s hip-hop. I hope to determine these differences by looking at various aspects, such as timbre.  
 
@@ -43,7 +43,7 @@ Column {data-width=300}
 -----------------------------------------------------------------------
 <img src="C:\Users\elias\OneDrive\Documents\PostJay.png" alt="PostMalone and Jay-Z" style="width:95%;">
 
-*This is an AI generated image, made on [Craiyon](https://www.craiyon.com), of two very well known artists: on the left we see Post Malone and on the right Jay-Z. A fun blend of two iconic figures from different eras, with Jay-Z representing the 90s hiphop sound and Post Malone embodying the modern day rap style.*
+*This is an AI generated image, made on [Craiyon](https://www.craiyon.com), of two very well known artists: on the left we see Post Malone and on the right Jay-Z. A fun blend of two iconic figures from different eras, with Jay-Z representing the 90s hiphop sound and Post Malone symbolizing the modern day rap style.*
 
 Valence and Energy {data-navmenu="Getting to know the selected corpus"}
 ================================
@@ -87,7 +87,7 @@ ggplotly(gg, height=550, width=875)
 Column {data-width=400} 
 -----------------------------------------------------------------------
 #### Is there a correlation between Valence and Energy? 
-To begin the visualisation of the selected corpus let's take a look at two variables called energy and valence. How do they differ from the 90s to the modern day rap music and is there a correlation between the two variables? The measurement for both variables ranges from 0.0 to 1.0. Valence is referring to the emotional quality the music conveys: 1 being very positive, happy and/or uplifting and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example. We can see that there is **more fluctuation in the modern rap music when we look at valence**, the old-school graph has more tracks with higher valence compared to the later period, consisting of predominantly values above 0.5. Overall we see that the most popular hip-hop/rap songs from **both time spans generally have high energy values**, most of them being around 0.5 or higher. **It is difficult to determine a clear correlation between energy and valence in these popular hip-hop/rap songs from both periods**: because when we look at the old-school graph the highest values of energy are both located at the lowest and highest values of valence. One possible explanation for this could be that either low or high valence results in high energy. It's important to mention that there are exceptions to this though, such as *"Check the Rhime"* from A Tribe Called Quest released in 1991 (the blue dot in the upper left corner of the "old-school" graph). **There is one significant difference we can conclude between the old-school and modern graph**: the modern period's highest energy values do not correlate with either high or low valence values, where the old-school period has the highest energy on the extreme values of valence, both high and low. You can hoover over the dots of the scatter plot to see the track names, the exact release date and the exact values for both variables; if you are familiar with 90's hip-hop or popular rap songs from recent years, you will probably recognize some of the track names!  
+To begin the visualisation of the selected corpus let's take a look at two variables called energy and valence. How do they differ from the 90s to the modern day rap music and is there a correlation between the two variables? The measurement for both variables ranges from 0.0 to 1.0. Valence is referring to the emotional quality the music conveys: 1 being very positive, happy and/or uplifting and 0.0 being angry, regretful or sad. Energy gives us an idea about the intensity and the activity of the track. A really energetic track would feel rousing for example. We can see that there is **more fluctuation in the modern rap music when we look at valence**, the old-school graph has more tracks with higher valence compared to the later period, consisting of predominantly values above 0.5. Overall we see that the most popular hip-hop/rap songs from **both time spans generally have high energy values**, most of them being around 0.5 or higher. **It is difficult to determine a clear correlation between energy and valence in these popular hip-hop/rap songs from both periods**: because when we look at the old-school graph the highest values of energy are both located at the lowest and highest values of valence. One possible explanation for this could be that either low or high valence results in high energy. It's important to mention that there are exceptions to this though, such as *'Check the Rhime'* from A Tribe Called Quest released in 1991 (the blue dot in the upper left corner of the "old-school" graph). **There is one significant difference we can conclude between the old-school and modern graph**: the modern period's highest energy values do not correlate with either high or low valence values, where the old-school period has the highest energy on the extreme values of valence, both high and low. You can hoover over the dots of the scatter plot to see the track names, the exact release date and the exact values for both variables; if you are familiar with 90s hip-hop or popular rap songs from recent years, you will probably recognize some of the track names!  
 
 
 Danceability and Speechiness {data-navmenu="Getting to know the selected corpus"}
@@ -152,7 +152,7 @@ ggplotly(gg2, tooltip = c("x", "y", "text"), hoverinfo = "x+y+text", height=550,
 Column {data-width=334} 
 -----------------------------------------------------------------------
 #### Is there a correlation between Speechiness and Danceability?
-These graphs examine the relationship between speechiness and danceability from both time periods **(you can highlight one of the two periods by double-clicking on it in the legend).** Danceability measures how suitable a track is for dancing, it's primarly based on the rhythm, tempo and beat strength. It ranges from 0.0 to 1.0, with higher values indicating a greater likelihood of the track being danceable. Speechiness, on the other hand, measures the presence of spoken words in a track. It also ranges from 0.0 to 1.0, with higher values indicating that the track contains more 'spoken word-like' vocals. Without going in too much detail here, we are looking at two graphs which contain exactly the same data; **the only differences are the trend lines, these are calculated by different methods called LOESS and GAM.** One interesting and very extreme outlier here is *"Yes Indeed"* from Lil Baby featuring Drake; having both the highest danceability (almost at a maximum of 1.0) and the highest speechiness of the whole corpus. Because of this I've used two different methods for determining the trend lines. For the old-school period, both methods showed a relatively stable relationship between speechiness and danceability, with a upward trend at the beginning, peaking in between the speechiness values of 0.2 and 0.3. **These findings suggest a significant trend in the data during the old-school period, where an increase in speechiness is associated with an initial increase in danceability, followed by a subsequent decrease.** The cluster of data points (between the 0.2-0.3 range of speechiness) in the old-school period also nicely align with the peaks of both lines. The modern period also aligns and crosses with the old-school trend line around the spot of 0.23 speechiness, using the LOESS method. However, looking at this trend line of the modern period, we can see that the outlier *"Yes Indeed"* has a significant impact on the observed trend regarding the LOESS method. **The GAM method, on the other hand, shows a horizontal line; which would indicate that the increase of speechiness doesn't influence the danceability of the modern period in a significant way,** whilst the old-school period tends to show a significant non-linear relationship using both methods. All in all we can conclude that there would be more analysis needed to confirm these assumptions but that the results are remarkable: **"*Yes Indeed*" has a very decisive impact on the modern period, but it's also an important point of data which we can't ignore.**  Another relevant general observation regarding both groups, is that the popular rap music significantly consists of **more tracks which have less speechiness compared to the 90s popular hip-hop** and that these tracks tend to show **more fluctuation regarding the danceability.** The graphs also confirms one observation made earlier and this actually is very important to emphasize and remember that what we are looking at is relative: **the dataset exhibits a significant positive correlation between danceability and track popularity, with only a few tracks (three out of the whole corpus) having a score below 0.5 (one even being 0.497, which is extremely close to this threshold).**
+These graphs examine the relationship between speechiness and danceability from both time periods **(you can highlight one of the two periods by double-clicking on it in the legend).** Danceability measures how suitable a track is for dancing, it's primarly based on the rhythm, tempo and beat strength. It ranges from 0.0 to 1.0, with higher values indicating a greater likelihood of the track being danceable. Speechiness, on the other hand, measures the presence of spoken words in a track. It also ranges from 0.0 to 1.0, with higher values indicating that the track contains more 'spoken word-like' vocals. Without going in too much detail here, we are looking at two graphs which contain exactly the same data; **the only differences are the trend lines, these are calculated by different methods called LOESS and GAM.** One interesting and very extreme outlier here is *'Yes Indeed'* from Lil Baby featuring Drake; having both the highest danceability (almost at a maximum of 1.0) and the highest speechiness of the whole corpus. Because of this I've used two different methods for determining the trend lines. For the old-school period, both methods showed a relatively stable relationship between speechiness and danceability, with a upward trend at the beginning, peaking in between the speechiness values of 0.2 and 0.3. **These findings suggest a significant trend in the data during the old-school period, where an increase in speechiness is associated with an initial increase in danceability, followed by a subsequent decrease.** The cluster of data points (between the 0.2-0.3 range of speechiness) in the old-school period also nicely align with the peaks of both lines. The modern period also aligns and crosses with the old-school trend line around the spot of 0.23 speechiness, using the LOESS method. However, looking at this trend line of the modern period, we can see that the outlier *'Yes Indeed'* has a significant impact on the observed trend regarding the LOESS method. **The GAM method, on the other hand, shows a horizontal line; which would indicate that the increase of speechiness doesn't influence the danceability of the modern period in a significant way,** whilst the old-school period tends to show a significant non-linear relationship using both methods. All in all we can conclude that there would be more analysis needed to confirm these assumptions but that the results are remarkable: *'Yes Indeed'* has a very decisive impact on the modern period, but it's also an important point of data which we can't ignore.  Another relevant general observation regarding both groups, is that the popular rap music significantly consists of **more tracks which have less speechiness compared to the 90s popular hip-hop** and that these tracks tend to show **more fluctuation regarding the danceability.** The graphs also confirms one observation made earlier and this actually is very important to emphasize and remember that what we are looking at is relative: **the dataset exhibits a significant positive correlation between danceability and track popularity, with only a few tracks (three out of the whole corpus) having a score below 0.5 (one even being 0.497, which is extremely close to this threshold).**
 
 
 
@@ -216,7 +216,7 @@ ggplot(df, aes(x = basis, y = value, fill = genre)) +
 Column {data-width=400}
 -----------------------------------------------------------------------
 #### What Is Timbre and What Are Timbre Coefficients? 
-Timbre is everything about an audio file that is separated from the sound qualities pitch, duration and volume. It can be seen as a tone color or tone quality. For example, think about a violin and a piano that would both play a musical tone like C4: this tone could have the same pitch, same duration and the same volume but will differ in timbre. **Timbre is a comprehensive concept that is sometimes difficult to put into words and can therefore be difficult to analyse.** This graph contains the 12 timbre coefficients that Spotify uses to analyse an audio file and this is pretty ambiguous to interprete; the only people who have assigned a real meaning to them are Spotify engineers, and they've kept information about the exact meaning of these values internal. When we take a quick look, there seems to be a lot of similarity between the two, on the other hand, when we look more detailed, **there are significant differences in shape and range in certain coefficients, for example at c02, c05, c07, c08 and c11, this confirms that the timbre of both groups differ.** The first coefficient actually is mainly based on the loudness variable; so besides the fact volume usually isn't a factor in timbre, Spotify uses loudness as one of their timbre coefficients. Try to take a good look at c01 before going to the next page, or feel free to come back to this page after visiting the next, although small, this graph has visualized the specific values of the loudness variable of this corpus very accurately and it is fun to see how you can recognize the shape of the boxplots I will present on the next page into these shapes!
+Timbre is everything about an audio file that is separated from the sound qualities pitch, duration and volume. It can be seen as a tone color or tone quality. For example, think about a violin and a piano that would both play a musical tone like C4: this tone could have the same pitch, same duration and the same volume but will differ in timbre. **Timbre is a comprehensive concept that is sometimes difficult to put into words and can therefore be difficult to analyse.** This graph contains the 12 timbre coefficients that Spotify uses to analyse an audio file and this is pretty ambiguous to interprete; the only people who have assigned a real meaning to them are Spotify engineers, and they've kept information about the exact meaning of these values internal. When we take a quick look, there seems to be a lot of similarity between the two, but on the other hand, when we look more detailed, **there are significant differences in shape and range in certain coefficients, for example at c02, c05, c07, c08 and c11, this confirms that the timbre of both groups differ.** The first coefficient actually is mainly based on the loudness variable; so besides the fact volume usually isn't a factor in timbre, Spotify uses loudness as one of their timbre coefficients. Try to take a good look at c01 before going to the next page, or feel free to come back to this page after visiting the next, although small, this graph has visualized the specific values of the loudness variable of this corpus very accurately and it is fun to see how you can recognize the shape of the boxplots I will present on the next page into these shapes!
 
 Looking Further Into the Loudness Variable{data-navmenu="Getting to know the selected corpus"}
 =======================================
@@ -259,8 +259,8 @@ ggplotly(Loudness, height=550, width=875)
 Column {data-width=400} 
 -----------------------------------------------------------------------
 #### Conclusions and Assumptions Based on the Boxplots
-One of my hypotheses was that modern rap music would have higher loudness than 90s hiphop music. This boxplot shows that the modern rap music has a higher median, but that the 90's actually has the highest max loudness value of the whole corpus! The range of loudness for 90s hip hop music (from -14.73 to -2.43) is way wider than that of modern rap music (from -9.31 to -3.37, 
-when we leave out the outlier), **this indicates that there is greater variability in loudness within 90's hip hop music**; the interquartile range from both boxplots are a good visual representation for this. Overall, the boxplots suggest that **modern rap music tends to be louder than 90's hip hop music on average**; because it has a more concentrated distribution of loudness values and has a higher median whilst the IQR range is way smaller. Nevertheless, it is noteworthy to mention that the third quartile of the 90's hip hop has a higher range than the modern rap music and, like I mentioned earlier, the loudest track of this corpus is from the 90's. **However, the possibility of these tracks being remastered or other factors that may have affected the loudness of the music cannot be ruled out based on the boxplots alone and this could be a really decisive factor on why the 'old-school boxplot' has the highest max loudness value.** This corpus only consists of the most popular tracks and therefore it makes sense to assume these tracks have been remastered before they where uploaded on Spotify. 
+One of my hypotheses was that modern rap music would have higher loudness than 90s hip-hop music. This boxplot shows that the modern rap music has a higher median, but that the old-school period actually has the highest max loudness value of the whole corpus! The range of loudness for old-school (from -14.73 to -2.43) is way wider than that of modern rap music (from -9.31 to -3.37, 
+when we leave out the outlier), **this indicates that there is greater variability in loudness within 90s hip hop music**; the interquartile range from both boxplots are a good visual representation for this. Overall, the boxplots suggest that **modern rap music tends to be louder than 90s hip hop music on average**; because it has a more concentrated distribution of loudness values and has a higher median whilst the IQR range is way smaller. Nevertheless, it is noteworthy to mention that the third quartile of the 'old-school boxplot' has a higher range than the modern one  and, like I mentioned earlier, the loudest track of this corpus is from the 90s. **However, the possibility of these tracks being remastered or other factors that may have affected the loudness of the music cannot be ruled out based on the boxplots alone and this could be a really decisive factor on why the 'old-school boxplot' has the highest max loudness value.** This corpus only consists of the most popular tracks and therefore it makes sense to assume these tracks have been remastered before they where uploaded on Spotify. 
 
 
 
@@ -336,12 +336,12 @@ OldSchoolvsModern |>
 Column {data-width=400} 
 -----------------------------------------------------------------------
 #### Conclusions and Assumptions Based on the Mean Tempo and the Standard Deviation
-With this graph we are  looking at the mean tempi of the all the tracks. The y-axis of the graph displays the standard deviation, which is a measure of the degree of variability of the data points from the mean value. In addition to this, the graph also includes information on two other variables: duration and volume. One first observation when looking at this graph is that the standard deviation overall is very low; **we can conclude that there is not a lot of variance in the calculated means of the tempi.** Something we would expect with hip-hop and rap music in general, and therefore also from both these periods, as the beats and rhythm usually are very repetitive and steady. **It is a logical conclusion that this also explains why this type of music generally has such high danceability values, as we saw earlier.** Besides this we can see a clear difference between the hip-hop from the 90's and the modern rap music. **As the old-school period (apart from the 3 outliers on the right) has significantly lower mean tempo than the modern rap music.** One interesting observation, something we saw earlier in the valence and energy graph too, is that **the modern rap music shows a lot of fluctuation compared to the old-school period.**  We can see a steady cluster of data around 140/150 BPM but also a lot of other different values of BPM, whilst the data from the old-school period has a really steady cluster of almost all the data (besides the 3 outliers with high BPM) from around 80 to roughly 115 BPM. This fluctuation can also be observed in the duration variable. With the modern tracks displaying a wider range of sizes, including very small ones (which means these songs are very); this stands in contrast to the old-school tracks, which tend to have a more uniform size. **This observed variability in track duration, with a trend towards shorter tracks in the modern period, may be attributed to a shift in the music industry towards optimizing streaming revenue, as shorter tracks tend to have a higher repeat value which generates more streams and therefore higher profits.**
+With this graph we are  looking at the mean tempo of the all the tracks. The y-axis of the graph displays the standard deviation, which is a measure of the degree of variability of the data points from the mean value. In addition to this, the graph also includes information on two other variables: duration and volume. One first observation when looking at this graph is that the standard deviation overall is very low; **we can conclude that there is not a lot of variance in the calculated means of the tempi.** Something we would expect with hip-hop and rap music in general, and therefore also from both these periods, as the beats and rhythm usually are very repetitive and steady. **It is a logical conclusion that this also explains why this type of music generally has such high danceability values, as we saw earlier.** Besides this we can see a clear difference between the hip-hop from the 90's and the modern rap music. **As the old-school period (apart from the 3 outliers on the right) has significantly lower mean tempo than the modern rap music.** One interesting observation, something we saw earlier in the valence and energy graph too, is that **the modern rap music shows a lot of fluctuation compared to the old-school period.**  We can see a steady cluster of data around 140/150 BPM but also a lot of other different values of BPM, whilst the data from the old-school period has a really steady cluster of almost all the data (besides the 3 outliers with high BPM) from around 80 to roughly 115 BPM. This fluctuation can also be observed in the duration variable. With the modern tracks displaying a wider range of sizes, including very small ones (which means these songs are very); this stands in contrast to the old-school tracks, which tend to have a more uniform size. **This observed variability in track duration, with a trend towards shorter tracks in the modern period, may be attributed to a shift in the music industry towards optimizing streaming revenue, as shorter tracks tend to have a higher repeat value which generates more streams and therefore higher profits.**
 
-One of the most streamed songs on Spotify
+One of The Most Streamed Songs on Spotify
 =======================================
-#### Looking at one of the outliers: "rockstar"
-In the graph about energy and valence there were some remarkable outliers, one of them being the song *"rockstar"* from Post Malone featuring 21Savage which consists of the lowest valence of the whole corpus (0.129). This song is also the most streamed song of the corpus having above 2.7 billion streams and also holds [the fifth spot on Spotify's list of most-streamed tracks!](https://en.wikipedia.org/wiki/List_of_most-streamed_songs_on_Spotify) Let's take a look at the chroma of this song in the forms of a chromagram and a chordogram. A chromagram is used to identify the pitches that are played in a song. It contains all the 12 pitch classes (tone height is a irrelevant factor for chroma) from the Western tonal system. **Each chroma vector shows the distribution of energy across the twelve chroma bands in a signal's frame. Herefore it is a very usable tool to represent and analyse an audio-file, as it gives us a lot of insight about the harmonic and melodic movement of the track.** We can also use these chroma vectors to make other grams, such as a chordogram; this also uses chroma, but with some computational magic, uses the pitches from the song to estimate played chords. The chroma from this song is actually really interesting as it conveys some musical, theoretical contradictions that are counterintuitive on first sight. When looking at the chromagram we see two dominant notes besides the C in the intro; the notes C#/Db and G are repeated regularly through out the song and could be seen as the most abundant notes of the chromagram. Besides these two notes we also see some repetitive magnitude in other notes, which at times even show some chromaticism. **These first observations already can be seen as an explanation why the song has such low valence.** An interesting nuance to this whole story thus far is that the SpotifyAPI concludes that this song is in F minor (key=5 and mode=0) while we can see that the note F throughout the song actually is one of the few notes that has very little magnitude apart from the ending. **One logical explanation for a computational algorithm to conclude this would be that both the C#/Db key or G key don't share the two notes (C#/Db and G), either in minor or major modes and therefore both are ruled out as one of the keys via this algorithm.** I actually have my own theory about the key and I don't agree that this song would be in F minor. **I'm really positive that this song is in the key G minor**, due to both my personal, musical intuition and logical reasoning. With this in mind let's take a look at the chordogram, and I will elaborate on how I came to this reasoning. 
+#### Looking at one of the outliers: 'rockstar'
+In the graph about energy and valence there were some remarkable outliers, one of them being the song *'rockstar'* from Post Malone featuring 21Savage which consists of the lowest valence of the whole corpus (0.129). This song is also the most streamed song of the corpus having above 2.7 billion streams and also holds [the fifth spot on Spotify's list of most-streamed tracks!](https://en.wikipedia.org/wiki/List_of_most-streamed_songs_on_Spotify) Let's take a look at the chroma of this song in the forms of a chromagram and a chordogram. A chromagram is used to identify the pitches that are played in a song. It contains all the 12 pitch classes (tone height is a irrelevant factor for chroma) from the Western tonal system. **Each chroma vector shows the distribution of energy across the twelve chroma bands in a signal's frame. Herefore it is a very usable tool to represent and analyse an audio-file, as it gives us a lot of insight about the harmonic and melodic movement of the track.** We can also use these chroma vectors to make other grams, such as a chordogram; this also uses chroma, but with some computational magic, uses the pitches from the song to estimate played chords. The chroma from this song is actually really interesting as it conveys some musical, theoretical contradictions that are counterintuitive on first sight. **When looking at the chromagram we see two dominant notes besides the C in the intro; the notes C#/Db and G are repeated regularly through out the song and could be seen as the most abundant notes of the chromagram.** Besides these two notes we also see some repetitive magnitude in other notes, which at times even show some chromaticism. **These first observations already can be seen as an explanation why the song has such low valence.** An interesting nuance to this whole story thus far is that the SpotifyAPI concludes that this song is in F minor (key=5 and mode=0) while we can see that the note F throughout the song is actually one of the few notes that has very little magnitude apart from the ending. **One logical explanation for a computational algorithm to conclude this song would be in the key F minor is that both the C#/Db key or G key don't share the two notes (C#/Db and G), either in minor or major modes and therefore both are ruled out as one of the keys via this algorithm.** I actually have my own theory about the key and I don't agree that this song would be in F minor. **I'm really positive that this song is in the key G minor**, due to both my personal, musical intuition and logical reasoning. With this in mind let's take a look at the chordogram, and I will elaborate on how I came to this reasoning (you can scroll down on this page). 
 ```{r}
 library(tidyverse)
 library(spotifyr)
@@ -366,13 +366,13 @@ rockstargram <- rockstar |>
   labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
   theme_minimal() +
   scale_fill_viridis_c() +
-  ggtitle("Chromagram from the song: rockstar (feat. 21 Savage)")
+  ggtitle("Chromagram from the song: rockstar")
 ggplotly(rockstargram, height=600, width=750)
 ```
 
 
 #### Looking At the Chordogram
-We can see that the short intro consists of a C minor chord, which plays the notes **G, Db and C.** (which also perfectly fit into G minor). After this short intro, throughout the whole song, **A7 (A – C# – E – G) and Eb7 (Eb - G - Bb - Db) are predominantly present in the chordogram.** When listening to "rockstar", we can hear synthpads throughout the whole song, **laying the foundation of the harmony.** These are getting steadily repeated, which is nicely shown by the chordogram. I've played along with the really simplistic main melody of this song and I'm positive that this melody is in **the key of G minor** and goes like this: **D - C - Bb - A,** and eventually this melody expands a little and the A resolves to the tonic G. **My assumption on why the chordogram provides this information is that the synthpads are detuned.** And it is hard to layer out these chroma bands, as these synth pads are present throughout the whole song. **This also explains why the chromagram we saw showed some remarkable chromatic energy distribution, which isn't normally used in pop or modern day rap songs.** Besides this detuning, the chordogram determined two chords in which **both the note G is used**, but when looking into both these chords we see **chromatic notes (A-Bb and Eb-E)**; which is contradicting because both these chords are presented as one straight dark line throughout the whole song and chordogram, which would mean there would be a constant chromatic sound of these two groups of notes A-Bb and Eb-E, which as I said I think is product of detuned synths. The chords share the G, which I think is the tonic, and share a C#/Db (which I think is also due this detuning). Well, it is a very interesting observation and one thing I can recommend is that you decide for yourself with keeping this in mind! If you would like to find out, play along with the song, and I'm sure you will agree with one thing, that **this song isn't in F minor.** 
+We can see that the short intro consists of a C minor chord, which plays the notes **C, Db and G** (which also perfectly fit into G minor). After this short intro, throughout the whole song, **A7 (A – C# – E – G) and Eb7 (Eb - G - Bb - Db) are predominantly present in the chordogram.** When listening to "rockstar", we can hear synthpads throughout the whole song, **laying the foundation of the harmony.** These are getting steadily repeated, which is nicely shown by the chordogram. I've played along with the really simplistic main melody of this song and I'm positive that this melody is in **the key of G minor** and goes like this: **D - C - Bb - A, and eventually this melody expands a little and the A resolves to the tonic G. My assumption on why the chordogram provides this information is that the synthpad, which provides the foundation of the harmony, is detuned.**  And it is hard to layer out these chroma bands, as this synthpad are present throughout the whole song. **This also explains why the chromagram we saw showed some remarkable chromatic energy distribution, which isn't normally used in pop or modern day rap songs.** Besides this detuning, the chordogram determined two chords in which **both the note G is used**, but when looking into both these chords we see **chromatic notes (A-Bb and Eb-E)**; which is contradicting because both these chords are presented as one straight dark line throughout the whole song and chordogram, which would mean there would be a constant chromatic sound of these two groups of notes A-Bb and Eb-E, which as I said I think is product of detuned synths. The chords share the G, which I think is the tonic, and share a C#/Db (which I think is also due this detuning). Well, it is a very interesting observation and one thing I can recommend is that you decide for yourself with keeping this in mind! If you would like to find out, play along with the song, and I'm sure you will agree with one thing, that **this song isn't in F minor.** 
 ```{r}
 circshift <- function(v, n) {
   if (n == 0) v else c(tail(v, n), head(v, -n))
@@ -486,18 +486,18 @@ rockstar3 |>
   geom_tile() +
   scale_fill_viridis_c(guide = "none") +
   theme_minimal() +
-  labs(x = "Time (s)", y = "") + ggtitle("Chordogram from the song: rockstar (feat. 21 Savage)")
+  labs(x = "Time (s)", y = "") + ggtitle("Chordogram from the song: rockstar")
 ```
 
 
-Analysis of the song "Juicy"
+Analysis of 'Juicy'
 =======================================
 Column 
 -----------------------------------------------------------------------
 
 
-#### Self-Similarity Matrices for "Juicy"
-Let's now have a look at the track *"Juicy"* by Biggie Smalls, which is an example of 90s old-school hip-hop." **We are looking at self-similarity matrix, which is a tool used to analyze the structural similarities within a musical piece.** Each cell represents the similarity between two segments of the piece. The diagonal of the matrix represents the self-similarity of each segment with itself. We are looking at one a self-similarity matrix based on chroma, and the other one on timbre. **One thing that immediately stands out is that the graph contains a lot of unity in terms of chroma:** hip-hop from the 90s often uses simple and repetitive chord progressions due to the use of sampled music, which emphasizes the rhythm and vocal elements of the music instead of the harmony. **Therefore the timbre-based self-similarity matrix shows us the clear structure of the song, instead of the chroma-based self-similarity matrix.** Roughly speaking we can see three big sections: which are the rapverses of Biggie Smalls. And in contrast to these verses we see two 'little blocks' and one 'big block' at the end of the song; which are the hooks, being sung by a female artist. Her voice conveys a different timbre and everything we see in these matrixes are relative. **Therefore the timbre really accurately defines these segments as different; this results in a great and clear visualisation of the song.**
+#### Self-Similarity Matrices for 'Juicy'
+Let's now have a look at the track *'Juicy'* by Biggie Smalls, which is an example of 90s old-school hip-hop. **We are looking at self-similarity matrix, which is a tool used to analyze the structural similarities within a musical piece.** Each cell represents the similarity between two segments of the piece. The diagonal of the matrix represents the self-similarity of each segment with itself. We are looking at one a self-similarity matrix based on chroma, and the other one on timbre. **One thing that immediately stands out is that the graph contains a lot of unity in terms of chroma:** hip-hop from the 90s often uses simple and repetitive chord progressions due to the use of sampled music, which emphasizes the rhythm and vocal elements of the music instead of the harmony. **Therefore the timbre-based self-similarity matrix shows us the clear structure of the song, instead of the chroma-based self-similarity matrix.** Roughly speaking we can see three big sections: which are the verses of Biggie Smalls. And in contrast to these verses we see two 'little blocks' and one 'big block' at the end of the song; which are the hooks, being sung by a female artist. Her voice conveys a different timbre and everything we see in these matrices are relative. **Therefore the timbre really accurately defines these segments as different; this results in a great and clear visualisation of the song.**
 ```{r, fig.width=8, fig.height=6}
 juicy <-
   get_tidy_audio_analysis("5ByAIlEEnxYdvpnezg7HTX") |>
@@ -545,10 +545,10 @@ bind_rows(
 ```
 
 
-In depth analysis of the song "Shoota" {.storyboard}
+In Depth Analysis of 'Shoota' {.storyboard}
 =======================================
 
-### Self-Similarity Matrices for "Shoota"
+### Self-Similarity Matrices for 'Shoota'
 ```{r}
 library(tidyverse)
 library(spotifyr)
@@ -601,7 +601,7 @@ bind_rows(
 
 
 ***
-Here we are looking at a self-similarity matrix of the song *"Shoota"* from Playboi Carti featuring Lil Uzi Vert, which was one of the centre points in the first graph when we are looking at valence and energy. **This song in my opinion accurately represents a shift in the sound and style of hiphop, reflecting the evolution of the genre and the changing tastes and preferences of its audience.** The delivery style and flow of the rapping are very  different, **it has a more melodic and sing-song approach in comparison with a more straight forward style of old school hip-hop.** Shoota also features a somewhat more complex and layered production style than the old school hip hop songs and therefore I think it is an interesting song to look at and give a in depth analysis using multiple grams. We can see that the self-similarity matrices transparently visualise the segmentation of the song. **A short intro, followed by a 'big block', which is Lil Uzi Vert's verse**; with an absence of drums. After this the drums come in and **the chorus is rapped by Playboi Carti (this is the 'second block').** We can hear some extra notes added, the main harmony is shifted up an octave and the drums 'drop'. This results in both a new timbre section and a new chroma section. **After this chorus, there is a verse of Playboi Carti(the 'third block')** and **at the end the chorus is repeated(the 'fourth block')**, which is shown very clear by both grams. I will refer to the specific sections of this song in the following pages, so please do not hesitate to revisit this page if you require a refresher on the song's structure.  
+Here we are looking at a self-similarity matrix of the song *'Shoota'* from Playboi Carti featuring Lil Uzi Vert, which was one of the centre points in the first graph when we are looking at valence and energy. **This song in my opinion accurately represents a shift in the sound and style of hiphop, reflecting the evolution of the genre and the changing tastes and preferences of its audience.** The delivery style and flow of the rapping are very  different, **it has a more melodic and sing-song approach in comparison with a more straight forward style of old school hip-hop.** *'Shoota'* also features a somewhat more complex and layered production style than the old school hip hop songs and therefore I think it is an interesting song to look at and give a in depth analysis using multiple grams. We can see that the self-similarity matrices transparently visualise the segmentation of the song. **A short intro, followed by a 'big block', which is Lil Uzi Vert's verse**; with an absence of drums. After this the drums come in and **the chorus is rapped by Playboi Carti (this is the 'second block').** We can hear some extra notes added, the main harmony is shifted up an octave and the drums 'drop'. This results in both a new timbre section and a new chroma section. **After this chorus, there is a verse of Playboi Carti (the 'third block')** and **at the end the chorus is repeated (the 'fourth block')**, which is shown very clear by both grams. I will refer to the specific sections of this song in the following pages, so please do not hesitate to revisit this page if you require a refresher on the song's structure.  
 
 
 ### What is a Cepstrogram? 
@@ -643,7 +643,7 @@ Shoota |>
 
 
 *** 
-Do you remeber the Spotify timbre coefficients we looked at earlier? Well, this is precisely the same, but now we are looking at the coefficients of a specific song. There are some interesting observations that can be made about this cepstrogram. **Upon close inspection, we can actually see the chorus of Playboi Carti very clearly!** The shift in timbre is convenient as it leads to a shift of various timbre coefficients (such as c01, c04 and c06) in the middle and end; which represents the chorus as we saw in the self-similarity matrices. When the first chorus ends (some seconds before 100), we can observe a noticeable rise in c02, which can be attributed to the sudden absence of the beat's 808 (bass) element: this leads to a convenient increase of brightness which is roughly what c02 represents. **Besides this we can clearly see that during Lil Uzi Vert's part, with the absence of drums, c03 and c05 have a relatively high magnitude.** Another interesting observation is the short spike of magnitude of c11 in the song's intro whilst at the same time c03 drops from high magnitude to extremely little for some seconds, which may be attributed to Lil Uzi Vert's sudden appearance and increased vocal prominence. 
+Do you remember the Spotify timbre coefficients we looked at earlier? Well, this is precisely the same, but now we are looking at the coefficients of a specific song. There are some interesting observations that can be made based on this cepstrogram. **Upon close inspection, we can actually see the chorus of Playboi Carti very clearly!** The shift in timbre is convenient as it leads to a shift of various timbre coefficients (such as c01, c04 and c06) in the middle and end of the song; which represents the chorus as we saw in the self-similarity matrices. When the first chorus ends (some seconds before 100), we can observe a noticeable rise in c02, which can be attributed to the sudden absence of the beat's 808 (bass): this leads to an increase of brightness (which is roughly what c02 represents). Besides this we can clearly see that during Lil Uzi Vert's part, with the absence of drums, c03 and c05 have a relatively high magnitude. Another interesting observation is the short spike of magnitude of c11 in the song's intro whilst at the same time c03 drops from high magnitude to extremely little for some seconds, which may be attributed to Lil Uzi Vert's sudden appearance and increased vocal prominence in combination with the beat. 
 
 ### What is the key of this song? 
 ```{r}
@@ -763,7 +763,7 @@ Shoota3 |>
 ```
 
 *** 
-We can see that this song is in **the key C# minor**, as it is dominantly present throughout the whole song. At the first chorus, where the drums come in and Playboi Carti begins rapping, the algorithm is having some problems; **I think this is due the sudden presence of the drums, which leads to some inharmonicity.** Therefore we see blending of various keys, but still; C# minor relatively contains the most energy at this part and we can see one straight line throughout the whole song at this key. **In the verse of Playboi Carti, we can see that B majos has higher energy than C# minor. This is not very unusual as B major (B, C♯, D♯, E, F♯, G♯, A♯) is very alike of C# minor (C♯, D♯, E, F♯, G♯, A, B) as they only differ one note (being A and A#).** After this, a repetition of the key blending hierarchy emerges, providing further evidence of the song's structural coherence and the tonic being C# minor without modulation. **During my listening experience of this song, I discovered an interesting fact which I verified by playing the melody on a piano: the track actually starts with a C# minor chord being played as a broken chord, moving from G#5 to E5 and resolving into C#5!** 
+We can see that this song is in **the key C# minor**, as it is dominantly present throughout the whole song. At the first chorus, where the drums come in and Playboi Carti begins rapping, the algorithm is having some problems; **I think this is due the sudden presence of the drums, which leads to some inharmonicity.** Therefore we see blending of various keys, but still, C# minor relatively contains the most energy at this part and we can see one straight line throughout the whole song at this key. **In the verse of Playboi Carti, we can see that B major has higher energy than C# minor. This is not very unusual as B major (B, C♯, D♯, E, F♯, G♯, A♯) is very alike of C# minor (C♯, D♯, E, F♯, G♯, A, B) as they only differ one note (being A and A#).** After this, a repetition of the key blending hierarchy emerges, providing further evidence of the song's structural coherence and the tonic being C# minor without modulation. One fun fact I've heard while listening to the song which I verified by playing the melody on a piano: the track actually starts with a C# minor chord being played as a descending arpeggio, moving from G# to E and resolving into C#!
 
 
 
@@ -781,14 +781,181 @@ shoota4 |>
 ```
 
 *** 
-This is a tempogram of the song 
+This visual representation effectively communicates its meaning without the need for extensive explanation: the yellow line represents the tempo of the song. As we saw earlier, regarding the graph displaying the average tempi of all tracks within the corpus, most songs consist of extremely low standard deviation and therefore have a very stable BPM. *'Shoota'* is a good example of this; as **we can see the BPM of the whole song is roughly 150 BPM and it almost shows no variation except from some little jumps which are due to the little differences in the beat (the 808 which fades out or the hi hat that stops for a section). **
+
+
+Clustering The Corpus
+=======================================
+#### Can We Accurately Cluster the Corpus?
+Here we are looking at a comprehensive cluster of the whole corpus; **clustering can be used to identify patterns and similarities of a dataset.** This cluster uses average linkage and only conveys the sound qualities timbre, duration and volume. I've decided to omit pitch as it led to less reliable clustering. **Generally speaking, the cluster was successful in effectively grouping the songs in a manner that accurately captured their similarities and differences; resulting in meaningful and coherent clusters.** This also gave some food for thought though, which I will elaborate on in the conclusion tab. Let's first have a look at the cluster. We can see that on the left there are two songs succesfully clustered apart from the rest of the tracks; these two songs share the same sort of sound and this is due to very high instrumentalness compared to the other tracks (you can verify this by scrolling down to view the second cluster). I think the most important feature to distinguish these two groups of popular hip-hop songs from the 90s and modern-day rap is timbre; the cluster overall made good clusters after omiting the pitch; for example the songs *'goosebumps'* and *'SICKO MODE'* are both tracks by Travis Scott (*'SICKO MODE'* is from Drake featuring Travis Scott) and these are grouped together. Overall we can see some big clusters and identify some characteristics for these groups. **The clustering demonstrated a clear alignment between the time spans of the songs in the identified clusters.** For example, all songs between *'Mind Playing Tricks On Me'* and *'Ruff Ryder's Anthem'*, which belong to the old-school period, were accurately clustered together. From there the cluster, apart from two old-school tracks (*'I Got 5 On It'* and *'Still D.R.E'*), continues to accurately cluster the modern period: from *'Bad and Boujee'* till *'Murder On My Mind'*. From that point there are three more groups roughly speaking, which also mostly are identified successfully in their own time spans. So from this basis the cluster overall accurately grouped together old-school and modern hip-hop/rap music based on the sound qualities. The cluster provides multiple levels of interpretation, it effectively identifies groups of tracks from the different time periods as well as different song types from both periods in same groups: **Additionally, whilst leaving out the first nine tracks  from the left (these are fairly unique compared to the whole corpus), the hierarchical clustering for example unveiled sub-clusters that differentiated from less dynamic vocal prominent songs and tracks that integrate more complex melodic and singing elements from both old-school hip-hop and modern rap.** A good example of this is the group of clustered modern rap (together with *'I Got 5 On It'* and *'Still D.R.E'*) in the middle compared to old-school and modern rap songs that are located to the right like *'Doo Woop (That Thing)'*, *'Gangsta's Paradise'*, *'Tha Crossroads'*, *'Lucid Dreams'*, *'SAD!'*, *'Nowadays'* and *'Go Crazy'*: which all convey prominent singing elements (there are some exceptions to this though, like '*Twinz'*, which in both clusters gets grouped with *'Lucid Dreams'*, but overall the contrast is evident).
+```{r, fig.height=8, fig.width=15}
+library(tidyverse)
+library(tidymodels)
+library(ggdendro)
+library(heatmaply)
+library(spotifyr)
+library(compmus)
+
+get_conf_mat <- function(fit) {
+  outcome <- .get_tune_outcome_names(fit)
+  fit |> 
+    collect_predictions() |> 
+    conf_mat(truth = outcome, estimate = .pred_class)
+}  
+
+get_pr <- function(fit) {
+  fit |> 
+    conf_mat_resampled() |> 
+    group_by(Prediction) |> mutate(precision = Freq / sum(Freq)) |> 
+    group_by(Truth) |> mutate(recall = Freq / sum(Freq)) |> 
+    ungroup() |> filter(Prediction == Truth) |> 
+    select(class = Prediction, precision, recall)
+}  
+
+halloween <-
+  get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO") |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre)) 
+
+halloween_juice <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = halloween
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(halloween |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+halloween_dist <- dist(halloween_juice, method = "euclidean")
+
+halloween_dist |> 
+  hclust(method = "average") |> # Try single, average, and complete.
+  dendro_data() |>
+  ggdendrogram()
+```
+
+
+
+```{r, fig.height=14}
+library(tidyverse)
+library(tidymodels)
+library(ggdendro)
+library(heatmaply)
+library(spotifyr)
+library(compmus)
+
+get_conf_mat <- function(fit) {
+  outcome <- .get_tune_outcome_names(fit)
+  fit |> 
+    collect_predictions() |> 
+    conf_mat(truth = outcome, estimate = .pred_class)
+}  
+
+get_pr <- function(fit) {
+  fit |> 
+    conf_mat_resampled() |> 
+    group_by(Prediction) |> mutate(precision = Freq / sum(Freq)) |> 
+    group_by(Truth) |> mutate(recall = Freq / sum(Freq)) |> 
+    ungroup() |> filter(Prediction == Truth) |> 
+    select(class = Prediction, precision, recall)
+}  
+
+halloween <-
+  get_playlist_audio_features("", "4QfiuYUQDJExOBuLtIVLuO") |>
+  add_audio_analysis() |>
+  mutate(
+    segments = map2(segments, key, compmus_c_transpose),
+    pitches =
+      map(segments,
+          compmus_summarise, pitches,
+          method = "mean", norm = "manhattan"
+      ),
+    timbre =
+      map(
+        segments,
+        compmus_summarise, timbre,
+        method = "mean"
+      )
+  ) |>
+  mutate(pitches = map(pitches, compmus_normalise, "clr")) |>
+  mutate_at(vars(pitches, timbre), map, bind_rows) |>
+  unnest(cols = c(pitches, timbre)) 
+
+halloween_juice <-
+  recipe(
+    track.name ~
+      danceability +
+      energy +
+      loudness +
+      speechiness +
+      acousticness +
+      instrumentalness +
+      liveness +
+      valence +
+      tempo +
+      duration +
+      c01 + c02 + c03 + c04 + c05 + c06 +
+      c07 + c08 + c09 + c10 + c11 + c12,
+    data = halloween
+  ) |>
+  step_center(all_predictors()) |>
+  step_scale(all_predictors()) |> 
+  # step_range(all_predictors()) |> 
+  prep(halloween |> mutate(track.name = str_trunc(track.name, 20))) |>
+  juice() |>
+  column_to_rownames("track.name")
+
+halloween_dist <- dist(halloween_juice, method = "euclidean")
+
+
+
+heatmaply(
+  halloween_juice,
+  hclustfun = hclust,
+  hclust_method = "average",  # Change for single, average, or complete linkage.
+  dist_method = "euclidean"
+)
+```
+
 
 
 Conclusion
 =============================
 Column
 -----------------------------------------------------------------------
-#### Conclusion/discussion
+#### Conclusion and Discussion
+This computational research of popular 90s hip-hop and modern rap music has revealed several interesting insights into the musical trends regarding the differences and similarities between the two periods. Through the use of a variety of computational musicology techniques, we were able to identify some key features of each period's music and explore the ways in which they differed and overlapped. Some of which were very likely, such as the BPM having a low standard deviation; and others which were very surprising, such as the loudness variable in which the old-school period had a higher max value. **The first few graphs showed us some interesting trends; like the recurrence of more fluctuation in the data of the modern rap compared to the 90s hip-hop.** One possible explanation for that could be the development of the rap genre through the years and the way the music industry has expanded; but there would be other types of research needed to make such conclusions. Another thing that would be interesting for further research is the relationship of danceability and speechiness in modern rap, as we saw one remarkable outlier that contradicted some observations. The modern rap showed a decrease in speechiness and high danceability values overall, but at the same time the highest danceability of the whole corpus had the highest speechiness. **One very important point of discussion is that I've only used popular tracks, which were a good way of making objective comparison groups but maybe also limited it's potential in a way.** For example, future research could explore specific sub-genres, which also were getting pointed out by the cluster; where both periods were clustered together in the higher hierarchies. This way instead of comparing the different time spans; the difference between sub-genres could be a topic of research, where the music from different time spans that are alike (which would need more computational analysis) could provide insightful information about the development and emergence of certain sub-genres. One thing I was very interested in was how do the time spans differ? **One of the main findings was that timbre is a significant feature in distinguishing between the two time periods. Additionally, the cluster successfully aligned with the time periods after removing the pitch sound qualities.** There are a lot of possible explanations of why the timbre differs: the use of autotune and other pitch correction techniques, the integration of more synthesized sounds and electronic production, and therefore a shift towards using fewer samples in modern rap production. **In conclusion, future research could expand on this study by examining sub-genres within the hip-hop and rap genres, as well as extending the time period analyzed to cover the entire history of rap music and using a bigger dataset**
 
 ```{r}
 
