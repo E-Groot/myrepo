@@ -763,11 +763,11 @@ Shoota3 |>
 ```
 
 *** 
-We can see that this song is in **the key C# minor**, as it is dominantly present throughout the whole song. At the first chorus, where the drums come in and Playboi Carti begins rapping, the algorithm is having some problems; **I think this is due the sudden presence of the drums, which leads to some inharmonicity.** Therefore we see blending of various keys, but still; C# minor relatively contains the most energy at this part and we can see one straight line throughout the whole song at this key. **In the verse of Playboi Carti, we can see that B major is has relatively high energy. This is not very unusual as B major (B, C♯, D♯, E, F♯, G♯, A♯) is very alike of C# minor (C♯, D♯, E, F♯, G♯, A, B) as they only differ one note (being A and A#).** After this, a repetition of the key blending hierarchy emerges, providing further evidence of the song's structural coherence with the exact same chorus. 
+We can see that this song is in **the key C# minor**, as it is dominantly present throughout the whole song. At the first chorus, where the drums come in and Playboi Carti begins rapping, the algorithm is having some problems; **I think this is due the sudden presence of the drums, which leads to some inharmonicity.** Therefore we see blending of various keys, but still; C# minor relatively contains the most energy at this part and we can see one straight line throughout the whole song at this key. **In the verse of Playboi Carti, we can see that B majos has higher energy than C# minor. This is not very unusual as B major (B, C♯, D♯, E, F♯, G♯, A♯) is very alike of C# minor (C♯, D♯, E, F♯, G♯, A, B) as they only differ one note (being A and A#).** After this, a repetition of the key blending hierarchy emerges, providing further evidence of the song's structural coherence and the tonic being C# minor without modulation. **During my listening experience of this song, I discovered an interesting fact which I verified by playing the melody on a piano: the track actually starts with a C# minor chord being played as a broken chord, moving from G#5 to E5 and resolving into C#5!** 
 
 
 
-### Tempo of the track
+### Tempogram of the song
 ```{r}
 shoota4 <- get_tidy_audio_analysis("2BJSMvOGABRxokHKB0OI8i")
 
@@ -781,6 +781,7 @@ shoota4 |>
 ```
 
 *** 
+This is a tempogram of the song 
 
 
 Conclusion
