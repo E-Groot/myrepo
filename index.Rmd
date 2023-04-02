@@ -215,7 +215,7 @@ ggplot(df, aes(x = basis, y = value, fill = genre)) +
 
 Column {data-width=400}
 -----------------------------------------------------------------------
-#### What is timbre and what are timbre coefficients? 
+#### What Is Timbre and What Are Timbre Coefficients? 
 Timbre is everything about an audio file that is separated from the sound qualities pitch, duration and volume. It can be seen as a tone color or tone quality. For example, think about a violin and a piano that would both play a musical tone like C4: this tone could have the same pitch, same duration and the same volume but will differ in timbre. **Timbre is a comprehensive concept that is sometimes difficult to put into words and can therefore be difficult to analyse.** This graph contains the 12 timbre coefficients that Spotify uses to analyse an audio file and this is pretty ambiguous to interprete; the only people who have assigned a real meaning to them are Spotify engineers, and they've kept information about the exact meaning of these values internal. When we take a quick look, there seems to be a lot of similarity between the two, on the other hand, when we look more detailed, **there are significant differences in shape and range in certain coefficients, for example at c02, c05, c07, c08 and c11, this confirms that the timbre of both groups differ.** The first coefficient actually is mainly based on the loudness variable; so besides the fact volume usually isn't a factor in timbre, Spotify uses loudness as one of their timbre coefficients. Try to take a good look at c01 before going to the next page, or feel free to come back to this page after visiting the next, although small, this graph has visualized the specific values of the loudness variable of this corpus very accurately and it is fun to see how you can recognize the shape of the boxplots I will present on the next page into these shapes!
 
 Looking Further Into the Loudness Variable{data-navmenu="Getting to know the selected corpus"}
@@ -490,14 +490,14 @@ rockstar3 |>
 ```
 
 
-Old school hip hop song analysis{data-navmenu="Further Visualisation and Analysis"} 
+Analysis of the song "Juicy"
 =======================================
 Column 
 -----------------------------------------------------------------------
 
 
 #### Self-Similarity Matrices for "Juicy"
-Let's now have a look at a track from the 90s. One thing that immediately stands out is that the graph contains a lot of unity in terms of chroma. The timbre-based self-similarity matrix shows us the clear structure of the song. Roughly speaking we can see 3 big sections, which are the rapverses of Biggie Smalls and in contrast to these verses we see 2 little blocks and 1 big block at the end of the song which are the hooks which are being sung by a female artist.    
+Let's now have a look at the track *"Juicy"* by Biggie Smalls, which is an example of 90s old-school hip-hop." **We are looking at self-similarity matrix, which is a tool used to analyze the structural similarities within a musical piece.** Each cell represents the similarity between two segments of the piece. The diagonal of the matrix represents the self-similarity of each segment with itself. We are looking at one a self-similarity matrix based on chroma, and the other one on timbre. **One thing that immediately stands out is that the graph contains a lot of unity in terms of chroma:** hip-hop from the 90s often uses simple and repetitive chord progressions due to the use of sampled music, which emphasizes the rhythm and vocal elements of the music instead of the harmony. **Therefore the timbre-based self-similarity matrix shows us the clear structure of the song, instead of the chroma-based self-similarity matrix.** Roughly speaking we can see three big sections: which are the rapverses of Biggie Smalls. And in contrast to these verses we see two 'little blocks' and one 'big block' at the end of the song; which are the hooks, being sung by a female artist. Her voice conveys a different timbre and everything we see in these matrixes are relative. **Therefore the timbre really accurately defines these segments as different; this results in a great and clear visualisation of the song.**
 ```{r, fig.width=8, fig.height=6}
 juicy <-
   get_tidy_audio_analysis("5ByAIlEEnxYdvpnezg7HTX") |>
@@ -601,10 +601,10 @@ bind_rows(
 
 
 ***
-Here we are looking at a self-similarity matrix of the song "Shoota", which is one of the centre points in the first graph when we are looking at valence and energy. **This song in my opinion accurately represents a shift in the sound and style of hiphop, reflecting the evolution of the genre and the changing tastes and preferences of its audience.** The delivery style and flow of the rapping are very  different, **it has a more melodic and sing-song approach in comparison with a more straight forward style of old school hip-hop.** Shoota also features a somewhat more complex and layered production style than the old school hip hop songs and therefore I think it is an interesting song to look at and give a in depth analysis using multiple grams. 
+Here we are looking at a self-similarity matrix of the song *"Shoota"* from Playboi Carti featuring Lil Uzi Vert, which was one of the centre points in the first graph when we are looking at valence and energy. **This song in my opinion accurately represents a shift in the sound and style of hiphop, reflecting the evolution of the genre and the changing tastes and preferences of its audience.** The delivery style and flow of the rapping are very  different, **it has a more melodic and sing-song approach in comparison with a more straight forward style of old school hip-hop.** Shoota also features a somewhat more complex and layered production style than the old school hip hop songs and therefore I think it is an interesting song to look at and give a in depth analysis using multiple grams. We can see that the self-similarity matrices transparently visualise the segmentation of the song. **A short intro, followed by a 'big block', which is Lil Uzi Vert's verse**; with an absence of drums. After this the drums come in and **the chorus is rapped by Playboi Carti (this is the 'second block').** We can hear some extra notes added, the main harmony is shifted up an octave and the drums 'drop'. This results in both a new timbre section and a new chroma section. **After this chorus, there is a verse of Playboi Carti(the 'third block')** and **at the end the chorus is repeated(the 'fourth block')**, which is shown very clear by both grams. I will refer to the specific sections of this song in the following pages, so please do not hesitate to revisit this page if you require a refresher on the song's structure.  
 
 
-### What is a Cepstogram? 
+### What is a Cepstrogram? 
 ```{r}
 Shoota <-
   get_tidy_audio_analysis("2BJSMvOGABRxokHKB0OI8i") |> # Change URI.
@@ -638,9 +638,12 @@ Shoota |>
   geom_tile() +
   labs(x = "Time (s)", y = NULL, fill = "Magnitude") +
   scale_fill_viridis_c() +                              
-  theme_classic() +   ggtitle("Cepstogram from Shoota")
+  theme_classic() +   ggtitle("Cepstrogram from Shoota")
 ```
 
+
+*** 
+Do you remeber the Spotify timbre coefficients we looked at earlier? Well, this is precisely the same, but now we are looking at the coefficients of a specific song. There are some interesting observations that can be made about this cepstrogram. **Upon close inspection, we can actually see the chorus of Playboi Carti very clearly!** The shift in timbre is convenient as it leads to a shift of various timbre coefficients (such as c01, c04 and c06) in the middle and end; which represents the chorus as we saw in the self-similarity matrices. When the first chorus ends (some seconds before 100), we can observe a noticeable rise in c02, which can be attributed to the sudden absence of the beat's 808 (bass) element: this leads to a convenient increase of brightness which is roughly what c02 represents. **Besides this we can clearly see that during Lil Uzi Vert's part, with the absence of drums, c03 and c05 have a relatively high magnitude.** Another interesting observation is the short spike of magnitude of c11 in the song's intro whilst at the same time c03 drops from high magnitude to extremely little for some seconds, which may be attributed to Lil Uzi Vert's sudden appearance and increased vocal prominence. 
 
 ### What is the key of this song? 
 ```{r}
@@ -760,7 +763,9 @@ Shoota3 |>
 ```
 
 *** 
-We can see that this song is in the key of C# minor, as it is dominantly present throughout the whole song, at the part where the drums come in and the other artist begins rapping. We see some more blending of keys, but still; the C# minor still contains the most energy. 
+We can see that this song is in **the key C# minor**, as it is dominantly present throughout the whole song. At the first chorus, where the drums come in and Playboi Carti begins rapping, the algorithm is having some problems; **I think this is due the sudden presence of the drums, which leads to some inharmonicity.** Therefore we see blending of various keys, but still; C# minor relatively contains the most energy at this part and we can see one straight line throughout the whole song at this key. **In the verse of Playboi Carti, we can see that B major is has relatively high energy. This is not very unusual as B major (B, C♯, D♯, E, F♯, G♯, A♯) is very alike of C# minor (C♯, D♯, E, F♯, G♯, A, B) as they only differ one note (being A and A#).** After this, a repetition of the key blending hierarchy emerges, providing further evidence of the song's structural coherence with the exact same chorus. 
+
+
 
 ### Tempo of the track
 ```{r}
